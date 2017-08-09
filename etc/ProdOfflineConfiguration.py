@@ -1538,7 +1538,7 @@ addExpressConfig(tier0Config, "Calibration",
                  versionOverride = expressVersionOverride,
                  dataType = "data",
                  archivalNode = "T0_CH_CERN_MSS",
-                 phedexGroup = "DataOps")
+                 tape_node = "T1_US_FNAL_MSS")
 
 addExpressConfig(tier0Config, "ExpressAlignment",
                  scenario = alcaTrackingOnlyScenario,
@@ -1561,8 +1561,7 @@ addExpressConfig(tier0Config, "ExpressAlignment",
                  timePerEvent = 4,
                  sizePerEvent = 1700,
                  versionOverride = expressVersionOverride,
-                 diskNode = "T2_CH_CERN",
-                 phedexGroup = "express")
+                 diskNode = "T2_CH_CERN")
 
 ###############################
 ### ExpressPA configuration ###
