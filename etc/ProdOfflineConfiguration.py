@@ -25,6 +25,7 @@ from T0.RunConfig.Tier0Config import addRegistrationConfig
 from T0.RunConfig.Tier0Config import addConversionConfig
 from T0.RunConfig.Tier0Config import setInjectRuns
 from T0.RunConfig.Tier0Config import setInjectMinRun
+from T0.RunConfig.Tier0Config import setInjectMaxRun
 
 # Create the Tier0 configuration object
 tier0Config = createTier0Config()
@@ -32,8 +33,11 @@ tier0Config = createTier0Config()
 # Set the verstion configuration (not used at the moment)
 setConfigVersion(tier0Config, "replace with real version")
 
-# Set the max run number:
-setInjectMinRun(tier0Config, 302030)
+# Set the min run number - just not to proceed anything before:
+setInjectMinRun(tier0Config, 9999999)
+
+# Set the max run number - will be used to close the era
+#setInjectMaxRun(tier0Config, 9999999)
 
 # replay these run
 #setInjectRuns(tier0Config, [ 289461 ])
@@ -48,10 +52,10 @@ processingSite = "T0_CH_CERN"
 #  Data type
 #  Processing site (where jobs run)
 #  PhEDEx locations
-setAcquisitionEra(tier0Config, "Run2017E")
+setAcquisitionEra(tier0Config, "XeXeRun2017")
 setBaseRequestPriority(tier0Config, 250000)
 setBackfill(tier0Config, None)
-setBulkDataType(tier0Config, "data")
+setBulkDataType(tier0Config, "hidata")
 setProcessingSite(tier0Config, processingSite)
 
 # Override for DQM data tier
@@ -61,7 +65,7 @@ setDQMDataTier(tier0Config, "DQMIO")
 # First timeout is used directly for reco release
 # Second timeout is used for the data service PromptReco start check
 # (to basically say we started PromptReco even though we haven't)
-defaultRecoTimeout =  48 * 3600
+defaultRecoTimeout =  48 * 3600 * 100 # we keep PR paused until we know how to deal with it
 defaultRecoLockTimeout = 1800
 
 # DQM Server
@@ -85,7 +89,7 @@ setPromptCalibrationConfig(tier0Config,
 defaultCMSSWVersion = {
        'acqEra': {'Run2017D': "CMSSW_9_2_10"},
        'maxRun': {303435: "CMSSW_9_2_10"},
-       'default': "CMSSW_9_2_12_patch1"
+       'default': "CMSSW_9_2_13"
      }
 
 # Configure ScramArch
@@ -99,6 +103,7 @@ hcalnzsScenario = "hcalnzsEra_Run2_2017"
 hiScenario = "ppEra_Run2_2016_pA"
 alcaTrackingOnlyScenario = "ppEra_Run2_2017_trackingOnly"
 alcaTestEnableScenario = "AlCaTestEnable"
+XeXeScenario = "ppEra_Run2_2017_pp_on_XeXe"
 
 # Defaults for processing version
 defaultProcVersionRAW = 1
@@ -109,12 +114,12 @@ alcarawProcVersion = {
      }
 
 defaultProcVersionReco = {
-       'acqEra': {'Run2017A': "3", 'Run2017B': "2", 'Run2017C': "3", 'Run2017D': "1"},
+       'acqEra': {'Run2017A': "3", 'Run2017B': "2", 'Run2017C': "3", 'Run2017D': "1", 'Run2017E': "1"},
        'default': "1"
      }
 
 expressProcVersion = {
-       'acqEra': {'Run2017A': "3", 'Run2017B': "2", 'Run2017C': "3", 'Run2017D': "1"},
+       'acqEra': {'Run2017A': "3", 'Run2017B': "2", 'Run2017C': "3", 'Run2017D': "1", 'Run2017E': "1"},
        'default': "1"
      }
 
@@ -143,21 +148,21 @@ repackVersionOverride = {
     }
 
 expressVersionOverride = {
-    "CMSSW_9_0_0" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_1_0" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_0" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_1" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_2" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_3" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_4" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_5" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_6" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_7" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_8" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_9" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_10" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_11" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_12" : "CMSSW_9_2_12_patch1"
+    "CMSSW_9_0_0" : "CMSSW_9_2_13",
+    "CMSSW_9_1_0" : "CMSSW_9_2_13",
+    "CMSSW_9_2_0" : "CMSSW_9_2_13",
+    "CMSSW_9_2_1" : "CMSSW_9_2_13",
+    "CMSSW_9_2_2" : "CMSSW_9_2_13",
+    "CMSSW_9_2_3" : "CMSSW_9_2_13",
+    "CMSSW_9_2_4" : "CMSSW_9_2_13",
+    "CMSSW_9_2_5" : "CMSSW_9_2_13",
+    "CMSSW_9_2_6" : "CMSSW_9_2_13",
+    "CMSSW_9_2_7" : "CMSSW_9_2_13",
+    "CMSSW_9_2_8" : "CMSSW_9_2_13",
+    "CMSSW_9_2_9" : "CMSSW_9_2_13",
+    "CMSSW_9_2_10" : "CMSSW_9_2_13",
+    "CMSSW_9_2_11" : "CMSSW_9_2_13",
+    "CMSSW_9_2_12" : "CMSSW_9_2_13"
     }
 
 #set default repack settings for bulk streams
@@ -322,25 +327,25 @@ for dataset in datasets:
 ### special test PDs ###
 ########################
 
-addDataset(tier0Config, "HcalNZS",
-           do_reco = True,
-           write_dqm = True,
-           dqm_sequences = [ "@common", "@hcal" ],
-           alca_producers = [ "HcalCalMinBias" ],
-           physics_skims = [ "LogError", "LogErrorMonitor" ],
-           timePerEvent = 4.2,
-           sizePerEvent = 1900,
-           scenario = hcalnzsScenario)
+#addDataset(tier0Config, "HcalNZS",
+#           do_reco = True,
+#           write_dqm = True,
+#           dqm_sequences = [ "@common", "@hcal" ],
+#           alca_producers = [ "HcalCalMinBias" ],
+#           physics_skims = [ "LogError", "LogErrorMonitor" ],
+#           timePerEvent = 4.2,
+#           sizePerEvent = 1900,
+#           scenario = hcalnzsScenario)
 
-addDataset(tier0Config, "HcalNZS_0T",
-           do_reco = True,
-           write_dqm = True,
-           dqm_sequences = [ "@common", "@hcal" ],
-           alca_producers = [ "HcalCalMinBias" ],
-           physics_skims = [ "LogError", "LogErrorMonitor" ],
-           timePerEvent = 4.2,
-           sizePerEvent = 1900,
-           scenario = hcalnzsScenario)
+#addDataset(tier0Config, "HcalNZS_0T",
+#           do_reco = True,
+#           write_dqm = True,
+#           dqm_sequences = [ "@common", "@hcal" ],
+#           alca_producers = [ "HcalCalMinBias" ],
+#           physics_skims = [ "LogError", "LogErrorMonitor" ],
+#           timePerEvent = 4.2,
+#           sizePerEvent = 1900,
+#           scenario = hcalnzsScenario)
 
 ###########################
 ### special AlcaRaw PDs ###
@@ -1049,25 +1054,25 @@ for dataset in datasets:
                physics_skims = [ "LogError", "LogErrorMonitor" ],
                scenario = ppScenarioB0T)
 
-datasets = [ "TestEnablesEcalHcal" ]
+# datasets = [ "TestEnablesEcalHcal" ]
+#
+# for dataset in datasets:
+#     addDataset(tier0Config, dataset,
+#                do_reco = False,
+#                raw_to_disk = True,
+#                alca_producers = [ "HcalCalPedestal" ],
+#                dqm_sequences = [ "@common" ],
+#                scenario = ppScenario)
 
-for dataset in datasets:
-    addDataset(tier0Config, dataset,
-               do_reco = False,
-               raw_to_disk = True,
-               alca_producers = [ "HcalCalPedestal" ],
-               dqm_sequences = [ "@common" ],
-               scenario = ppScenario)
+# datasets = [ "TestEnablesEcalHcal_0T" ]
 
-datasets = [ "TestEnablesEcalHcal_0T" ]
-
-for dataset in datasets:
-    addDataset(tier0Config, dataset,
-               do_reco = False,
-               raw_to_disk = True,
-               alca_producers = [ "HcalCalPedestal" ],
-               dqm_sequences = [ "@common" ],
-               scenario = ppScenarioB0T)
+# for dataset in datasets:
+#     addDataset(tier0Config, dataset,
+#                do_reco = False,
+#                raw_to_disk = True,
+#                alca_producers = [ "HcalCalPedestal" ],
+#                dqm_sequences = [ "@common" ],
+#                scenario = ppScenarioB0T)
 
 datasets = [ "SinglePhoton" ]
 
@@ -1252,8 +1257,8 @@ datasets = [ "ParkingHLTPhysics", "ParkingHLTPhysics0", "ParkingHLTPhysics1",
              "ParkingZeroBias10", "ParkingZeroBias11", "ParkingZeroBias12",
              "ParkingZeroBias13", "ParkingZeroBias14", "ParkingZeroBias15",
              "ParkingZeroBias16", "ParkingZeroBias17", "ParkingZeroBias18",
-             "ParkingZeroBias19", "ParkingZeroBias20", "AlCaPhiSym", "AlCaP0", "AlCaElectron", 
-             "RPCMonitor", "VRRandom", "VRRandom0", "VRRandom1", "VRRandom2", "VRRandom3",
+             "ParkingZeroBias19", "ParkingZeroBias20", "AlCaP0", "AlCaElectron", 
+             "VRRandom", "VRRandom0", "VRRandom1", "VRRandom2", "VRRandom3",
              "VRRandom4", "VRRandom5", "VRRandom6", "VRRandom7", "VRZeroBias", "VirginRaw" ]
 
 for dataset in datasets:
@@ -1261,9 +1266,10 @@ for dataset in datasets:
                do_reco = False,
                raw_to_disk = True,
                scenario = ppScenario)    
+
     
-datasets = [ "ParkingHLTPhysics_0T", "ParkingZeroBias_0T", "AlCaPhiSym_0T", "AlCaP0_0T", 
-             "AlCaElectron_0T", "RPCMonitor_0T", "VRRandom_0T", "VRRandom0_0T", "VRRandom1_0T",
+datasets = [ "ParkingHLTPhysics_0T", "ParkingZeroBias_0T", "AlCaP0_0T", 
+             "AlCaElectron_0T", "VRRandom_0T", "VRRandom0_0T", "VRRandom1_0T",
              "VRRandom2_0T", "VRRandom3_0T", "VRRandom4_0T", "VRRandom5_0T", "VRRandom6_0T",
              "VRRandom7_0T", "VRZeroBias_0T", "VirginRaw_0T" ]
 
@@ -1547,6 +1553,119 @@ for dataset in datasets:
                disk_node = None,
                scenario = ppScenarioB0T)
 
+
+#################################
+### XeXeRun2017 configuration ###
+#################################
+
+datasets = [ "AlCaPhiSym" ]
+
+for dataset in datasets:
+    addDataset(tier0Config, dataset,
+               do_reco = False,
+               disk_node = "T2_US_Vanderbilt",
+               scenario = XeXeScenario)
+
+
+#New PDs (default config):
+datasets = [ "EventDisplay", "L1Accept", "OnlineMonitor", "EcalLaser",
+             "TestEnablesEcalHcalDQM" ]
+
+for dataset in datasets:
+    addDataset(tier0Config, dataset,
+               do_reco = False,
+               disk_node = "T2_US_Vanderbilt",
+               scenario = XeXeScenario)
+
+# Same config as Jet PD:
+datasets = [ "HIJet1", "HIJet2", "HIEmptyBX" ]
+
+for dataset in datasets:
+    addDataset(tier0Config, dataset,
+               do_reco = True,
+               dqm_sequences = [ "@common" ],
+               disk_node = "T2_US_Vanderbilt",
+               scenario = XeXeScenario)
+
+
+# HIMinimumBias [1-15] + AlcaRecos
+datasets = [ "HIMinimumBias",
+             "HIMinimumBias1", "HIMinimumBias2", "HIMinimumBias3", "HIMinimumBias4",
+             "HIMinimumBias5", "HIMinimumBias6", "HIMinimumBias7", "HIMinimumBias8",
+             "HIMinimumBias9", "HIMinimumBias10", "HIMinimumBias11", "HIMinimumBias12",
+             "HIMinimumBias13", "HIMinimumBias14", "HIMinimumBias15", "HIMinimumBias16",
+             "HIMinimumBias17", "HIMinimumBias18", "HIMinimumBias19", "HIMinimumBias20" ]
+
+for dataset in datasets:
+    addDataset(tier0Config, dataset,
+               do_reco = True,
+               write_dqm = True,
+               dqm_sequences = [ "@common" ],
+               alca_producers = [ "SiStripCalZeroBias", "SiStripCalMinBias", "TkAlMinBias" ],
+               disk_node = "T2_US_Vanderbilt",
+               scenario = XeXeScenario)
+
+
+datasets = [ "HIZeroBias" ]
+for dataset in datasets:
+    addDataset(tier0Config, dataset,
+               do_reco = True,
+               raw_to_disk = True,
+               write_reco = True,
+               write_dqm = True,
+               dqm_sequences = [ "@commonSiStripZeroBias", "@ecal", "@hcal", "@muon" ],
+               alca_producers = [ "SiStripCalZeroBias", "TkAlMinBias", "LumiPixelsMinBias", "SiStripCalMinBias", "AlCaPCCZeroBiasFromRECO" ],
+               physics_skims = [ "LogError", "LogErrorMonitor" ],
+               disk_node = "T2_US_Vanderbilt",
+               timePerEvent = 3.5,
+               sizePerEvent = 1500,
+               scenario = XeXeScenario)
+
+# Same as for HINMuon, HINPhoton
+datasets = [ "HIMuon", "HIPhoton" ]
+for dataset in datasets:
+    addDataset(tier0Config, dataset,
+               do_reco = True,
+               write_dqm = True,
+               dqm_sequences = [ "@common" ],
+               disk_node = "T2_US_Vanderbilt",
+               scenario = XeXeScenario)
+
+# HcalNZS used special hcalnzsEra_Run2_2017 before - cant be reco'ed
+addDataset(tier0Config, "HcalNZS",
+           do_reco = False,
+           write_dqm = True,
+           dqm_sequences = [ "@common", "@hcal" ],
+           alca_producers = [ "HcalCalMinBias" ],
+           physics_skims = [ "LogError", "LogErrorMonitor" ],
+           disk_node = "T2_US_Vanderbilt",
+           timePerEvent = 4.2,
+           sizePerEvent = 1900,
+           scenario = XeXeScenario)
+
+
+datasets = [ "RPCMonitor" ]
+
+for dataset in datasets:
+    addDataset(tier0Config, dataset,
+               do_reco = False,
+               raw_to_disk = True,
+               disk_node = "T2_US_Vanderbilt",
+               scenario = XeXeScenario)   
+
+
+datasets = [ "TestEnablesEcalHcal" ]
+
+for dataset in datasets:
+    addDataset(tier0Config, dataset,
+               do_reco = False,
+               raw_to_disk = True,
+               alca_producers = [ "HcalCalPedestal" ],
+               dqm_sequences = [ "@common" ],
+               disk_node = "T2_US_Vanderbilt",
+               scenario = XeXeScenario)
+
+
 #############################
 ### Express configuration ###
 #############################
@@ -1575,6 +1694,59 @@ addExpressConfig(tier0Config, "Express",
                  timePerEvent = 4,
                  sizePerEvent = 1700,
                  versionOverride = expressVersionOverride)
+
+
+# XeXeRun2017 configuration:
+# As the data rates will be higher, are the max* parameters set ok
+addExpressConfig(tier0Config, "HIExpress",
+                 scenario = XeXeScenario,
+                 diskNode = "T2_US_Vanderbilt",
+                 data_tiers = [ "FEVT" ],
+                 write_dqm = True,
+                 alca_producers = [ "SiStripPCLHistos", "SiStripCalZeroBias", "SiStripCalMinBias",
+                                    "TkAlMinBias", "PromptCalibProd", "LumiPixelsMinBias",
+                                    "PromptCalibProdSiStrip", "PromptCalibProdSiStripGains", "PromptCalibProdSiPixelAli" ],
+                 reco_version = defaultCMSSWVersion,
+                 multicore = numberOfCores,
+                 global_tag_connect = globalTagConnect,
+                 global_tag = expressGlobalTag,
+                 proc_ver = expressProcVersion,
+                 maxInputRate = 23 * 1000,
+                 maxInputEvents = 400,
+                 maxInputSize = 2 * 1024 * 1024 * 1024,
+                 maxInputFiles = 15,
+                 maxLatency = 15 * 23,
+                 periodicHarvestInterval = 20 * 60,
+                 blockCloseDelay = 1200,
+                 timePerEvent = 4,
+                 sizePerEvent = 1700,
+                 versionOverride = expressVersionOverride)
+
+#HiExpressPhysics just uses same config as HIExpress:
+addExpressConfig(tier0Config, "HIExpressPhysics",
+                 scenario = XeXeScenario,
+                 diskNode = "T2_US_Vanderbilt",
+                 data_tiers = [ "FEVT" ],
+                 write_dqm = True,
+                 alca_producers = [ "SiStripPCLHistos", "SiStripCalZeroBias", "SiStripCalMinBias",
+                                    "TkAlMinBias", "PromptCalibProd", "LumiPixelsMinBias",
+                                    "PromptCalibProdSiStrip", "PromptCalibProdSiStripGains", "PromptCalibProdSiPixelAli" ],
+                 reco_version = defaultCMSSWVersion,
+                 multicore = numberOfCores,
+                 global_tag_connect = globalTagConnect,
+                 global_tag = expressGlobalTag,
+                 proc_ver = expressProcVersion,
+                 maxInputRate = 23 * 1000,
+                 maxInputEvents = 400,
+                 maxInputSize = 2 * 1024 * 1024 * 1024,
+                 maxInputFiles = 15,
+                 maxLatency = 15 * 23,
+                 periodicHarvestInterval = 20 * 60,
+                 blockCloseDelay = 1200,
+                 timePerEvent = 4,
+                 sizePerEvent = 1700,
+                 versionOverride = expressVersionOverride)
+
 
 addExpressConfig(tier0Config, "Express0T",
                  scenario = ppScenarioB0T,

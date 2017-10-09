@@ -48,6 +48,8 @@ setAcquisitionEra(tier0Config, "Tier0_REPLAY_vocms229")
 setBaseRequestPriority(tier0Config, 300000)
 setBackfill(tier0Config, 1)
 setBulkDataType(tier0Config, "data")
+#XeXeTestRun2017 for production
+#setBulkDataType(tier0Config, "hidata")
 setProcessingSite(tier0Config, processingSite)
 
 # Override for DQM data tier
@@ -80,7 +82,7 @@ setPromptCalibrationConfig(tier0Config,
 # Defaults for CMSSW version
 defaultCMSSWVersion = {
        'acqEra': {'Run2016D': "CMSSW_8_0_13_patch1"},
-       'default': "CMSSW_9_2_12_patch1"
+       'default': "CMSSW_9_2_13"
      }
 
 # Configure ScramArch
@@ -99,6 +101,8 @@ hcalnzsScenario = "hcalnzsEra_Run2_2017"
 hiScenario = "ppEra_Run2_2016_pA"
 alcaTrackingOnlyScenario = "ppEra_Run2_2017_trackingOnly"
 alcaTestEnableScenario = "AlCaTestEnable"
+#XeXeRun2017 scenario
+XeXeTestScenario = "ppEra_Run2_2017_pp_on_XeXe"
 
 # Defaults for processing version
 defaultProcVersion = 1
@@ -106,9 +110,9 @@ expressProcVersion = 1
 alcarawProcVersion = 1
 
 # Defaults for GlobalTag
-expressGlobalTag = "92X_dataRun2_Express_v7"
-promptrecoGlobalTag = "92X_dataRun2_Prompt_v9"
-alcap0GlobalTag = "92X_dataRun2_Prompt_v9"
+expressGlobalTag = "92X_dataRun2_Express_Candidate_forXeXe_v1"
+promptrecoGlobalTag = "92X_dataRun2_Prompt_Candidate_forXeXe_v1"
+alcap0GlobalTag = "92X_dataRun2_Prompt_Candidate_forXeXe_v1"
 
 # Mandatory for CondDBv2
 globalTagConnect = "frontier://PromptProd/CMS_CONDITIONS"
@@ -128,21 +132,21 @@ repackVersionOverride = {
     }
 
 expressVersionOverride = {
-    "CMSSW_9_0_0" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_1_0" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_0" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_1" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_2" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_3" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_4" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_5" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_6" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_7" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_8" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_9" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_10" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_11" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_12" : "CMSSW_9_2_12_patch1"
+    "CMSSW_9_0_0" : "CMSSW_9_2_13",
+    "CMSSW_9_1_0" : "CMSSW_9_2_13",
+    "CMSSW_9_2_0" : "CMSSW_9_2_13",
+    "CMSSW_9_2_1" : "CMSSW_9_2_13",
+    "CMSSW_9_2_2" : "CMSSW_9_2_13",
+    "CMSSW_9_2_3" : "CMSSW_9_2_13",
+    "CMSSW_9_2_4" : "CMSSW_9_2_13",
+    "CMSSW_9_2_5" : "CMSSW_9_2_13",
+    "CMSSW_9_2_6" : "CMSSW_9_2_13",
+    "CMSSW_9_2_7" : "CMSSW_9_2_13",
+    "CMSSW_9_2_8" : "CMSSW_9_2_13",
+    "CMSSW_9_2_9" : "CMSSW_9_2_13",
+    "CMSSW_9_2_10" : "CMSSW_9_2_13",
+    "CMSSW_9_2_11" : "CMSSW_9_2_13",
+    "CMSSW_9_2_12" : "CMSSW_9_2_13"
     }
 
 #set default repack settings for bulk streams
@@ -178,7 +182,7 @@ addDataset(tier0Config, "Default",
            blockCloseDelay = 1200,
            timePerEvent = 5,
            sizePerEvent = 1500,
-           scenario = ppScenario)
+           scenario = XeXeTestScenario)
 
 
 ###############################
@@ -193,6 +197,20 @@ addDataset(tier0Config, "Cosmics",
            timePerEvent = 0.5,
            sizePerEvent = 155,
            scenario = cosmicsScenario)
+
+#XeXeTestRun2017
+datasets = [ "HICosmicsTestXeXeTest", "CosmicsForEventDisplayXeXeTest" ]
+
+for dataset in datasets:
+    addDataset(tier0Config, dataset,
+           do_reco = True,
+           write_miniaod = False, write_dqm = True,
+           alca_producers = [ "TkAlCosmics0T", "MuAlGlobalCosmics", "DtCalibCosmics" ],
+           physics_skims = [ "CosmicSP", "CosmicTP", "LogError", "LogErrorMonitor" ],
+           timePerEvent = 0.5,
+           sizePerEvent = 155,
+           scenario = XeXeTestScenario)
+
 
 datasets = ["Commissioning", "Commissioning1", "Commissioning2", "Commissioning3", "Commissioning4",
             "CommissioningMuons", "CommissioningEGamma", "CommissioningTaus", "CommissioningSingleJet", "CommissioningDoubleJet"]
@@ -340,6 +358,23 @@ for dataset in datasets:
            timePerEvent = 0.02,
            sizePerEvent = 38,
            scenario = "AlCaLumiPixels")
+
+#XeXeTestRun2017
+datasets = [ "AlCaLumiPixelsXeXeTest" ]
+
+for dataset in datasets:
+    addDataset(tier0Config, dataset,
+           do_reco = True,
+           write_reco = False, write_aod = False, write_miniaod = False, write_dqm = True,
+           disk_node = None,
+           tape_node = None,
+           reco_split = alcarawSplitting,
+           proc_version = alcarawProcVersion,
+           alca_producers = [ "AlCaPCCZeroBias", "AlCaPCCRandom" ],
+           dqm_sequences = [ "@common" ],
+           timePerEvent = 0.02,
+           sizePerEvent = 38,
+           scenario = XeXeTestScenario)
 
 ########################################################
 ### ZeroBias PDs                                     ###
@@ -942,6 +977,16 @@ for dataset in datasets:
                dqm_sequences = [ "@common" ],
                scenario = ppScenario)
 
+#XeXeTestRun2017
+datasets = [ "TestEnablesEcalHcalXeXeTest", "TestEnablesEcalHcalDQMXeXeTest", "EcalLaserXeXeTest" ]
+
+for dataset in datasets:
+    addDataset(tier0Config, dataset,
+               do_reco = False,
+               alca_producers = [ "HcalCalPedestal" ],
+               dqm_sequences = [ "@common" ],
+               scenario = XeXeTestScenario)
+
 datasets = [ "TestEnablesEcalHcal_0T" ]
 
 for dataset in datasets:
@@ -1123,7 +1168,22 @@ datasets = [ "ParkingHLTPhysics", "ParkingHLTPhysics0", "ParkingHLTPhysics1",
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = False,
-               scenario = ppScenario)    
+               scenario = ppScenario)
+
+#XeXeTestRun2017
+datasets = [ "AlCaPhiSymXeXeTest", "RPCMonitorXeXeTest" ]
+for dataset in datasets:
+    addDataset(tier0Config, dataset,
+               do_reco = False,
+               scenario = XeXeTestScenario)
+
+
+#XeXeTestRun2017 new PDs
+datasets = [ "OnlineMonitorXeXeTest", "RPCMonitorXeXeTest" ]
+for dataset in datasets:
+    addDataset(tier0Config, dataset,
+               do_reco = False,
+               scenario = XeXeTestScenario)
     
 datasets = [ "ParkingHLTPhysics_0T", "ParkingZeroBias_0T", "AlCaPhiSym_0T", "AlCaP0_0T", 
              "AlCaElectron_0T", "RPCMonitor_0T", "VRRandom_0T", "VRRandom0_0T", "VRRandom1_0T",
@@ -1325,6 +1385,17 @@ for dataset in datasets:
                dqm_sequences = [ "@common" ],
                scenario = hiScenario)
 
+#XeXeTestRun2017
+datasets = [ "L1AcceptXeXeTest" ]
+
+for dataset in datasets:
+    addDataset(tier0Config, dataset,
+               do_reco = True,
+               write_dqm = True,
+               alca_producers = [ "LumiPixelsMinBias" ],
+               dqm_sequences = [ "@common" ],
+               scenario = XeXeTestScenario)
+
 datasets = [ "PAMinimumBiasHFOR0", "PAMinimumBiasHFOR1", "PAMinimumBiasHFOR2" ]
 
 for dataset in datasets:
@@ -1468,6 +1539,29 @@ addExpressConfig(tier0Config, "ExpressCosmics",
                  write_dqm = True,
                  alca_producers = [ "SiStripPCLHistos", "SiStripCalZeroBias", "TkAlCosmics0T",
                                     "DtCalibCosmics", "PromptCalibProdSiStrip" ],
+                 reco_version = defaultCMSSWVersion,
+                 multicore = numberOfCores,
+                 global_tag_connect = globalTagConnect,
+                 global_tag = expressGlobalTag,
+                 proc_ver = expressProcVersion,
+                 maxInputRate = 23 * 1000,
+                 maxInputEvents = 400,
+                 maxInputSize = 2 * 1024 * 1024 * 1024,
+                 maxInputFiles = 15,
+                 maxLatency = 15 * 23,
+                 periodicHarvestInterval = 20 * 60,
+                 blockCloseDelay = 1200,
+                 timePerEvent = 4, #I have to get some stats to set this properly
+                 sizePerEvent = 1700, #I have to get some stats to set this properly
+                 versionOverride = expressVersionOverride)
+
+#XeXeTestRun2017
+addExpressConfig(tier0Config, "HIExpressCosmicsXeXeTest",
+                 scenario = XeXeTestScenario,
+                 data_tiers = [ "FEVT" ],
+                 write_dqm = True,
+                 alca_producers = [ "SiStripPCLHistos", "SiStripCalZeroBias", "SiStripCalMinBias", 
+                                    "TkAlMinBias,LumiPixelsMinBias" ],
                  reco_version = defaultCMSSWVersion,
                  multicore = numberOfCores,
                  global_tag_connect = globalTagConnect,
