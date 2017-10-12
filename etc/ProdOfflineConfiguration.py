@@ -33,7 +33,7 @@ tier0Config = createTier0Config()
 setConfigVersion(tier0Config, "replace with real version")
 
 # Set the max run number:
-setInjectMinRun(tier0Config, 302030)
+setInjectMinRun(tier0Config, 999999999)
 
 # replay these run
 #setInjectRuns(tier0Config, [ 289461 ])
@@ -48,7 +48,7 @@ processingSite = "T0_CH_CERN"
 #  Data type
 #  Processing site (where jobs run)
 #  PhEDEx locations
-setAcquisitionEra(tier0Config, "Run2017E")
+setAcquisitionEra(tier0Config, "Run2017F")
 setBaseRequestPriority(tier0Config, 250000)
 setBackfill(tier0Config, None)
 setBulkDataType(tier0Config, "data")
@@ -85,7 +85,7 @@ setPromptCalibrationConfig(tier0Config,
 defaultCMSSWVersion = {
        'acqEra': {'Run2017D': "CMSSW_9_2_10"},
        'maxRun': {303435: "CMSSW_9_2_10"},
-       'default': "CMSSW_9_2_12_patch1"
+       'default': "CMSSW_9_2_13"
      }
 
 # Configure ScramArch
@@ -109,12 +109,12 @@ alcarawProcVersion = {
      }
 
 defaultProcVersionReco = {
-       'acqEra': {'Run2017A': "3", 'Run2017B': "2", 'Run2017C': "3", 'Run2017D': "1"},
+       'acqEra': {'Run2017A': "3", 'Run2017B': "2", 'Run2017C': "3", 'Run2017D': "1", 'Run2017E': "1"},
        'default': "1"
      }
 
 expressProcVersion = {
-       'acqEra': {'Run2017A': "3", 'Run2017B': "2", 'Run2017C': "3", 'Run2017D': "1"},
+       'acqEra': {'Run2017A': "3", 'Run2017B': "2", 'Run2017C': "3", 'Run2017D': "1", 'Run2017E': "1"},
        'default': "1"
      }
 
@@ -143,21 +143,21 @@ repackVersionOverride = {
     }
 
 expressVersionOverride = {
-    "CMSSW_9_0_0" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_1_0" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_0" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_1" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_2" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_3" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_4" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_5" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_6" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_7" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_8" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_9" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_10" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_11" : "CMSSW_9_2_12_patch1",
-    "CMSSW_9_2_12" : "CMSSW_9_2_12_patch1"
+    "CMSSW_9_0_0" : "CMSSW_9_2_13",
+    "CMSSW_9_1_0" : "CMSSW_9_2_13",
+    "CMSSW_9_2_0" : "CMSSW_9_2_13",
+    "CMSSW_9_2_1" : "CMSSW_9_2_13",
+    "CMSSW_9_2_2" : "CMSSW_9_2_13",
+    "CMSSW_9_2_3" : "CMSSW_9_2_13",
+    "CMSSW_9_2_4" : "CMSSW_9_2_13",
+    "CMSSW_9_2_5" : "CMSSW_9_2_13",
+    "CMSSW_9_2_6" : "CMSSW_9_2_13",
+    "CMSSW_9_2_7" : "CMSSW_9_2_13",
+    "CMSSW_9_2_8" : "CMSSW_9_2_13",
+    "CMSSW_9_2_9" : "CMSSW_9_2_13",
+    "CMSSW_9_2_10" : "CMSSW_9_2_13",
+    "CMSSW_9_2_11" : "CMSSW_9_2_13",
+    "CMSSW_9_2_12" : "CMSSW_9_2_13"
     }
 
 #set default repack settings for bulk streams
@@ -854,7 +854,7 @@ datasets = [ "SingleMuon" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               write_reco = True,
+               write_reco = False,
                raw_to_disk = True,
                write_dqm = True,
                tape_node = "T1_IT_CNAF_MSS",
@@ -869,7 +869,7 @@ datasets = [ "SingleMuon_0T" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               write_reco = True,
+               write_reco = False,
                raw_to_disk = True,
                write_dqm = True,
                tape_node = "T1_IT_CNAF_MSS",
@@ -934,7 +934,7 @@ datasets = [ "JetHT" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               write_reco = True,
+               write_reco = False,
                raw_to_disk = True,
                write_dqm = True,
                tape_node = "T1_DE_KIT_MSS",
@@ -951,7 +951,7 @@ datasets = [ "JetHT_0T" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               write_reco = True,
+               write_reco = False,
                raw_to_disk = True,
                write_dqm = True,
                tape_node = "T1_DE_KIT_MSS",
@@ -968,7 +968,7 @@ datasets = [ "MET" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               write_reco = True,
+               write_reco = False,
                raw_to_disk = True,
                write_dqm = True,
                tape_node = "T1_DE_KIT_MSS",
@@ -983,7 +983,7 @@ datasets = [ "MET_0T" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               write_reco = True,
+               write_reco = False,
                raw_to_disk = True,
                write_dqm = True,
                tape_node = "T1_DE_KIT_MSS",
@@ -1024,11 +1024,11 @@ datasets = [ "SingleElectron" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               write_reco = True,
+               write_reco = False,
                raw_to_disk = True,
                write_dqm = True,
-               tape_node = "T1_IT_CNAF_MSS",
-               disk_node = "T1_IT_CNAF_Disk",
+               tape_node = "T1_US_FNAL_MSS",
+               disk_node = "T1_US_FNAL_Disk",
                alca_producers = [ "EcalUncalWElectron", "EcalUncalZElectron", "HcalCalIterativePhiSym", "EcalESAlign" ],
                dqm_sequences = [ "@common", "@ecal", "@egamma" ],
                physics_skims = [ "LogError", "LogErrorMonitor" ],
@@ -1039,11 +1039,11 @@ datasets = [ "SingleElectron_0T" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               write_reco = True,
+               write_reco = False,
                raw_to_disk = True,
                write_dqm = True,
-               tape_node = "T1_IT_CNAF_MSS",
-               disk_node = "T1_IT_CNAF_Disk",
+               tape_node = "T1_US_FNAL_MSS",
+               disk_node = "T1_US_FNAL_Disk",
                alca_producers = [ "EcalUncalWElectron", "EcalUncalZElectron", "HcalCalIterativePhiSym", "EcalESAlign" ],
                dqm_sequences = [ "@common", "@ecal", "@egamma" ],
                physics_skims = [ "LogError", "LogErrorMonitor" ],
