@@ -32,7 +32,7 @@ tier0Config = createTier0Config()
 setConfigVersion(tier0Config, "replace with real version")
 
 # Set run number to replay
-setInjectRuns(tier0Config, [ 999999 ])
+setInjectRuns(tier0Config, [ 304120 ])
 
 # Settings up sites
 processingSite = "T0_CH_CERN"
@@ -44,7 +44,7 @@ processingSite = "T0_CH_CERN"
 #  Data type
 #  Processing site (where jobs run)
 #  PhEDEx locations
-setAcquisitionEra(tier0Config, "Tier0_REPLAY_vocms229")
+setAcquisitionEra(tier0Config, "Tier0_REPLAY_vocms015")
 setBaseRequestPriority(tier0Config, 300000)
 setBackfill(tier0Config, 1)
 setBulkDataType(tier0Config, "data")
@@ -101,9 +101,9 @@ alcaTrackingOnlyScenario = "ppEra_Run2_2017_trackingOnly"
 alcaTestEnableScenario = "AlCaTestEnable"
 
 # Defaults for processing version
-defaultProcVersion = 1
-expressProcVersion = 1
-alcarawProcVersion = 1
+defaultProcVersion = 161
+expressProcVersion = 161
+alcarawProcVersion = 161
 
 # Defaults for GlobalTag
 expressGlobalTag = "92X_dataRun2_Express_v7"
@@ -782,10 +782,17 @@ datasets = [ "SingleMuon" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
+               write_reco = False,
+               raw_to_disk = True,
                write_dqm = True,
                alca_producers = [ "TkAlMuonIsolated", "HcalCalIterativePhiSym", "DtCalib", "MuAlCalIsolatedMu", "MuAlOverlaps", "MuAlZMuMu", "HcalCalHO", "HcalCalHBHEMuonFilter" ],
                dqm_sequences = [ "@common", "@muon", "@lumi" ],
                physics_skims = [ "ZMu", "MuTau", "LogError", "LogErrorMonitor" ],
+               # A trial config for running PR on T2 site
+               archival_node = None,
+               tape_node = None,
+               disk_node = "T1_IT_CNAF_Disk",
+               siteWhitelist = [ "T2_CH_CERN" ],
                scenario = ppScenario)
 
 datasets = [ "SingleMuon_0T" ]
@@ -793,10 +800,17 @@ datasets = [ "SingleMuon_0T" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
+               write_reco = False,
+               raw_to_disk = True,
                write_dqm = True,
                alca_producers = [ "TkAlMuonIsolated", "HcalCalIterativePhiSym", "DtCalib", "MuAlCalIsolatedMu", "MuAlOverlaps", "MuAlZMuMu", "HcalCalHO", "HcalCalHBHEMuonFilter" ],
                dqm_sequences = [ "@common", "@muon", "@lumi" ],
                physics_skims = [ "ZMu", "MuTau", "LogError", "LogErrorMonitor" ],
+               # A trial config for running PR on T2 site
+               archival_node = None,
+               tape_node = None,
+               disk_node = "T1_IT_CNAF_Disk",
+               siteWhitelist = [ "T2_CH_CERN" ],
                scenario = ppScenarioB0T)
 
 datasets = [ "DoubleMu" ]
@@ -1641,3 +1655,4 @@ ignoreStream(tier0Config, "DQMOffline")
 
 if __name__ == '__main__':
     print(tier0Config)
+
