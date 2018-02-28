@@ -24,6 +24,7 @@ from T0.RunConfig.Tier0Config import addExpressConfig
 from T0.RunConfig.Tier0Config import addRegistrationConfig
 from T0.RunConfig.Tier0Config import addConversionConfig
 from T0.RunConfig.Tier0Config import setInjectRuns
+from T0.RunConfig.Tier0Config import setStreamerPNN
 
 # Create the Tier0 configuration object
 tier0Config = createTier0Config()
@@ -32,10 +33,11 @@ tier0Config = createTier0Config()
 setConfigVersion(tier0Config, "replace with real version")
 
 # Set run number to replay
-setInjectRuns(tier0Config, [ 999999 ])
+setInjectRuns(tier0Config, [ 310408 ])
 
 # Settings up sites
-processingSite = "T0_CH_CERN"
+processingSite = "T2_CH_CERN"
+streamerPNN = "T2_CH_CERN"
 
 # Set global parameters:
 #  Acquisition era
@@ -44,11 +46,13 @@ processingSite = "T0_CH_CERN"
 #  Data type
 #  Processing site (where jobs run)
 #  PhEDEx locations
-setAcquisitionEra(tier0Config, "Tier0_REPLAY_vocms229")
+setAcquisitionEra(tier0Config, "Tier0_REPLAY_vocms047")
 setBaseRequestPriority(tier0Config, 300000)
 setBackfill(tier0Config, 1)
 setBulkDataType(tier0Config, "data")
 setProcessingSite(tier0Config, processingSite)
+setStreamerPNN(tier0Config, streamerPNN)
+
 
 # Override for DQM data tier
 setDQMDataTier(tier0Config, "DQMIO")
@@ -79,8 +83,8 @@ setPromptCalibrationConfig(tier0Config,
 
 # Defaults for CMSSW version
 defaultCMSSWVersion = {
-       'acqEra': {'Run2017D': "CMSSW_9_2_10"},
-       'default': "CMSSW_10_0_0"
+       #'acqEra': {'Run2017D': "CMSSW_9_2_10"},
+       'default': "CMSSW_10_0_3"
      }
 
 # Configure ScramArch
@@ -96,9 +100,9 @@ alcaTrackingOnlyScenario = "trackingOnlyEra_Run2_2018"
 alcaTestEnableScenario = "AlCaTestEnable"
 
 # Defaults for processing version
-defaultProcVersion = 1
-expressProcVersion = 1
-alcarawProcVersion = 1
+defaultProcVersion = 231
+expressProcVersion = 231
+alcarawProcVersion = 231
 
 # Defaults for GlobalTag
 expressGlobalTag = "100X_dataRun2_Express_forT0Replay_MWGR2"
@@ -120,9 +124,15 @@ alcarawSplitting = 20000 * numberOfCores
 # Setup repack and express mappings
 #
 repackVersionOverride = {
+    "CMSSW_10_0_0" : "CMSSW_10_0_3",
+    "CMSSW_10_0_1" : "CMSSW_10_0_3",
+    "CMSSW_10_0_2" : "CMSSW_10_0_3"
     }
 
 expressVersionOverride = {
+    "CMSSW_10_0_0" : "CMSSW_10_0_3",
+    "CMSSW_10_0_1" : "CMSSW_10_0_3",
+    "CMSSW_10_0_2" : "CMSSW_10_0_3"
     }
 
 #set default repack settings for bulk streams
