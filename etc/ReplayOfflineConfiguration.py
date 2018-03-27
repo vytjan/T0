@@ -33,7 +33,7 @@ tier0Config = createTier0Config()
 setConfigVersion(tier0Config, "replace with real version")
 
 # Set run number to replay
-setInjectRuns(tier0Config, [ 311580 ])
+setInjectRuns(tier0Config, [ 312851 ])
 
 # Settings up sites
 processingSite = "T2_CH_CERN"
@@ -84,7 +84,7 @@ setPromptCalibrationConfig(tier0Config,
 
 # Defaults for CMSSW version
 defaultCMSSWVersion = {
-       'default': "CMSSW_10_0_4"
+       'default': "CMSSW_10_0_5"
      }
 
 # Configure ScramArch
@@ -100,14 +100,14 @@ alcaTrackingOnlyScenario = "trackingOnlyEra_Run2_2018"
 alcaTestEnableScenario = "AlCaTestEnable"
 
 # Defaults for processing version
-defaultProcVersion = 235
-expressProcVersion = 235
-alcarawProcVersion = 235
+defaultProcVersion = 239
+expressProcVersion = 239
+alcarawProcVersion = 239
 
 # Defaults for GlobalTag
 expressGlobalTag = "100X_dataRun2_Express_v3"
-promptrecoGlobalTag = "100X_dataRun2_Prompt_v3"
-alcap0GlobalTag = "100X_dataRun2_Prompt_v3"
+promptrecoGlobalTag = "100X_dataRun2_Prompt_v5"
+alcap0GlobalTag = "100X_dataRun2_Prompt_v5"
 
 # Mandatory for CondDBv2
 globalTagConnect = "frontier://PromptProd/CMS_CONDITIONS"
@@ -124,17 +124,18 @@ alcarawSplitting = 20000 * numberOfCores
 # Setup repack and express mappings
 #
 repackVersionOverride = {
-    "CMSSW_10_0_0" : "CMSSW_10_0_4",
-    "CMSSW_10_0_1" : "CMSSW_10_0_4",
-    "CMSSW_10_0_2" : "CMSSW_10_0_4",
-    "CMSSW_10_0_3" : "CMSSW_10_0_4"
+    "CMSSW_10_0_0" : "CMSSW_10_0_5",
+    "CMSSW_10_0_1" : "CMSSW_10_0_5",
+    "CMSSW_10_0_2" : "CMSSW_10_0_5",
+    "CMSSW_10_0_3" : "CMSSW_10_0_5"
     }
 
 expressVersionOverride = {
-    "CMSSW_10_0_0" : "CMSSW_10_0_4",
-    "CMSSW_10_0_1" : "CMSSW_10_0_4",
-    "CMSSW_10_0_2" : "CMSSW_10_0_4",
-    "CMSSW_10_0_3" : "CMSSW_10_0_4"
+    "CMSSW_10_0_0" : "CMSSW_10_0_5",
+    "CMSSW_10_0_1" : "CMSSW_10_0_5",
+    "CMSSW_10_0_2" : "CMSSW_10_0_5",
+    "CMSSW_10_0_3" : "CMSSW_10_0_5",
+    "CMSSW_10_0_4" : "CMSSW_10_0_5"
     }
 
 #set default repack settings for bulk streams
