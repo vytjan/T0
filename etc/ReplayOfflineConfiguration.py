@@ -85,6 +85,9 @@ defaultCMSSWVersion = {
        'default': "CMSSW_10_0_5"
      }
 
+# Simply test git pollgit stat
+# another amended comment was just added.
+
 # Configure ScramArch
 setDefaultScramArch(tier0Config, "slc6_amd64_gcc630")
 
