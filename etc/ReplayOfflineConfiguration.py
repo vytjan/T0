@@ -80,8 +80,6 @@ setPromptCalibrationConfig(tier0Config,
 #   'maxRun': {100000: Value3, 200000: Value4},
 #   'default': Value5 }
 
-
-
 # Defaults for CMSSW version
 defaultCMSSWVersion = {
        'default': "CMSSW_10_0_5"
