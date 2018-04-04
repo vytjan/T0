@@ -100,9 +100,9 @@ alcaTrackingOnlyScenario = "trackingOnlyEra_Run2_2018"
 alcaTestEnableScenario = "AlCaTestEnable"
 
 # Defaults for processing version
-defaultProcVersion = 239
-expressProcVersion = 239
-alcarawProcVersion = 239
+defaultProcVersion = 240
+expressProcVersion = 240
+alcarawProcVersion = 240
 
 # Defaults for GlobalTag
 expressGlobalTag = "100X_dataRun2_Express_v3"

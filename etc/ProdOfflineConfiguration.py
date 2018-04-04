@@ -30,6 +30,7 @@ from T0.RunConfig.Tier0Config import setInjectMaxRun
 # Create the Tier0 configuration object
 tier0Config = createTier0Config()
 
+
 # Set the verstion configuration (not used at the moment)
 setConfigVersion(tier0Config, "replace with real version")
 
