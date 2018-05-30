@@ -35,10 +35,33 @@ tier0Config = createTier0Config()
 setConfigVersion(tier0Config, "replace with real version")
 
 # Set the min run number:
-setInjectMinRun(tier0Config, 316998)
+#setInjectMinRun(tier0Config, 316998)
 
 # Set the max run number:
-setInjectMaxRun(tier0Config, 9999999)
+#setInjectMaxRun(tier0Config, 9999999)
+
+setInjectRuns(tier0Config, [ 316569, 316576, 316577, 316580, 316582, 316585, 316586, 316588, 316589,
+                             316590, 316592, 316593, 316594, 316596, 316598, 316599, 316602, 316605,
+                             316606, 316608, 316609, 316611, 316612, 316613, 316615, 316621, 316624, 
+                             316626, 316631, 316633, 316636, 316638, 316639, 316642, 316645, 316646,
+                             316647, 316649, 316653, 316654, 316655, 316658, 316664, 316665, 316666,
+                             316667, 316668, 316674, 316676, 316678, 316683, 316685, 316686, 316688,
+                             316693, 316696, 316699, 316700, 316701, 316702, 316704, 316705, 316706,
+                             316707, 316709, 316713, 316714, 316715, 316716, 316717, 316718, 316719,
+                             316720, 316721, 316722, 316723, 316749, 316750, 316751, 316758, 316761,
+                             316763, 316764, 316766, 316775, 316778, 316780, 316781, 316783, 316788,
+                             316792, 316793, 316794, 316796, 316797, 316798, 316799, 316808, 316810,
+                             316820, 316824, 316828, 316829, 316831, 316833, 316839, 316840, 316841,
+                             316842, 316845, 316851, 316852, 316854, 316859, 316860, 316861, 316862,
+                             316866, 316867, 316868, 316869, 316873, 316876, 316877, 316878, 316879,
+                             316881, 316882, 316883, 316890, 316893, 316895, 316897, 316900, 316901, 
+                             316905, 316906, 316908, 316909, 316911, 316912, 316916, 316917, 316928, 
+                             316930, 316931, 316932, 316933, 316935, 316936, 316937, 316939, 316943, 
+                             316944, 316945, 316947, 316948, 316950, 316952, 316954, 316956, 316957, 
+                             316958, 316961, 316962, 316964, 316965, 316971, 316972, 316973, 316976,
+                             316977, 316979, 316981, 316982, 316983, 316984, 316985, 316986, 316987,
+                             316988, 316991, 316993, 316994, 316995
+                             ])
 
 # Settings up sites
 processingSite = "T2_CH_CERN"
@@ -51,7 +74,7 @@ streamerPNN = "T2_CH_CERN"
 #  Data type
 #  Processing site (where jobs run)
 #  PhEDEx locations
-setAcquisitionEra(tier0Config, "Run2018B")
+setAcquisitionEra(tier0Config, "Run2018A")
 setBaseRequestPriority(tier0Config, 250000)
 setBackfill(tier0Config, None)
 setBulkDataType(tier0Config, "data")
@@ -109,13 +132,13 @@ alcaLumiPixelsScenario = "AlCaLumiPixels"
 defaultProcVersionRAW = 1
 
 alcarawProcVersion = {
-       'acqEra': {'Commissioning2018': '1', 'Run2018A': '2'},
-       'default': "1"
+       'acqEra': {'Commissioning2018': '1'},
+       'default': "3"
      }
 
 defaultProcVersionReco = {
-       'acqEra': {'Commissioning2018': '1', 'Run2018A': '2'},
-       'default': "1"
+       'acqEra': {'Commissioning2018': '1'},
+       'default': "3"
      }
 
 expressProcVersion = {
