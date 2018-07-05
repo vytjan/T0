@@ -35,7 +35,7 @@ tier0Config = createTier0Config()
 setConfigVersion(tier0Config, "replace with real version")
 
 # Set the min run number:
-setInjectMinRun(tier0Config, 316998)
+setInjectMinRun(tier0Config, 9999999)
 
 # Set the max run number:
 setInjectMaxRun(tier0Config, 9999999)
@@ -51,7 +51,7 @@ streamerPNN = "T2_CH_CERN"
 #  Data type
 #  Processing site (where jobs run)
 #  PhEDEx locations
-setAcquisitionEra(tier0Config, "Run2018B")
+setAcquisitionEra(tier0Config, "Run2018C")
 setBaseRequestPriority(tier0Config, 250000)
 setBackfill(tier0Config, None)
 setBulkDataType(tier0Config, "data")
@@ -109,13 +109,13 @@ alcaLumiPixelsScenario = "AlCaLumiPixels"
 defaultProcVersionRAW = 1
 
 alcarawProcVersion = {
-       'acqEra': {'Commissioning2018': '1', 'Run2018A': '2'},
-       'default': "2"
+       'acqEra': {'Commissioning2018': '1', 'Run2018A': '2', 'Run2018B': '2'},
+       'default': "1"
      }
 
 defaultProcVersionReco = {
-       'acqEra': {'Commissioning2018': '1', 'Run2018A': '2'},
-       'default': "2"
+       'acqEra': {'Commissioning2018': '1', 'Run2018A': '2', 'Run2018B': '2'},
+       'default': "1"
      }
 
 expressProcVersion = {
@@ -315,7 +315,7 @@ addExpressConfig(tier0Config, "ExpressAlignment",
                  scenario = alcaTrackingOnlyScenario,
                  data_tiers = [ "ALCARECO" ],
                  write_dqm = True,
-                 alca_producers = [ "TkAlMinBias", "PromptCalibProdBeamSpotHP" ],
+                 alca_producers = [ "TkAlMinBias", "PromptCalibProdBeamSpotHPLowPU" ],
                  dqm_sequences = [ "DQMOfflineTracking" ],
                  reco_version = defaultCMSSWVersion,
                  multicore = numberOfCores,
@@ -518,7 +518,7 @@ for dataset in datasets:
                sizePerEvent = 2000,
                scenario = ppScenario)
 
-datasets = [ "HighMultiplicity", "HighMultiplicityEOF" ]
+datasets = [ "HighMultiplicity" ]
 
 datasets += [ "HighMultiplicityEOF1", "HighMultiplicityEOF2", "HighMultiplicityEOF3",
               "HighMultiplicityEOF4", "HighMultiplicityEOF5" ]
@@ -530,6 +530,16 @@ for dataset in datasets:
                do_reco = True,
                write_reco = False,
                dqm_sequences = [ "@common" ],
+               scenario = ppScenario)
+
+# 05/07/2018 HighMultiplicityEOF needs to have 1sec per event
+datasets = [ "HighMultiplicityEOF" ]
+for dataset in datasets:
+    addDataset(tier0Config, dataset,
+               do_reco = True,
+               write_reco = False,
+               dqm_sequences = [ "@common" ],
+               timePerEvent = 1,
                scenario = ppScenario)
 
 datasets = [ "HighPtLowerPhotons", "HighPtPhoton30AndZ" ]
@@ -910,6 +920,7 @@ for dataset in datasets:
                tape_node = "T1_RU_JINR_MSS",
                disk_node = "T1_RU_JINR_Disk",
                dqm_sequences = [ "@common" ],
+               timePerEvent = 1,
                alca_producers = [ "SiStripCalZeroBias", "SiStripCalMinBias", "TkAlMinBias" ],
                scenario = ppScenario)
 
@@ -1222,7 +1233,7 @@ datasets += [ "ZeroBiasTOTEM1", "ZeroBiasTOTEM2", "ZeroBiasTOTEM3", "ZeroBiasTOT
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               write_reco = True,
+               write_reco = False,
                dqm_sequences = [ "@common" ],
                scenario = ppScenario)
 
