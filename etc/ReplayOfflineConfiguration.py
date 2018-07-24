@@ -33,7 +33,7 @@ tier0Config = createTier0Config()
 setConfigVersion(tier0Config, "replace with real version")
 
 # Set run number to replay
-setInjectRuns(tier0Config, [ 316993 ])
+setInjectRuns(tier0Config, [ 317663 ])
 
 # Settings up sites
 processingSite = "T2_CH_CERN"
@@ -100,9 +100,9 @@ alcaTestEnableScenario = "AlCaTestEnable"
 alcaLumiPixelsScenario = "AlCaLumiPixels"
 
 # Defaults for processing version
-defaultProcVersion = 248
-expressProcVersion = 248
-alcarawProcVersion = 248
+defaultProcVersion = 253
+expressProcVersion = 253
+alcarawProcVersion = 253
 
 # Defaults for GlobalTag
 expressGlobalTag = "101X_dataRun2_Express_v8"
@@ -366,6 +366,7 @@ for dataset in datasets:
                write_dqm = True,
                dqm_sequences = [ "@common" ],
                physics_skims = [ "LogError", "LogErrorMonitor" ],
+               siteWhitelist = [ "T0_CH_CSCS_HPC" ],
                scenario = ppScenario)
 
 datasets = [ "Charmonium" ]
@@ -378,6 +379,7 @@ for dataset in datasets:
                dqm_sequences = [ "@common" ],
                alca_producers = [ "TkAlJpsiMuMu" ],
                physics_skims = [ "BPHSkim", "MuonPOGJPsiSkim", "LogError", "LogErrorMonitor" ],
+               siteWhitelist = [ "T0_CH_CSCS_HPC" ],
                scenario = ppScenario)
 
 datasets = [ "Cosmics" ]
@@ -402,6 +404,7 @@ for dataset in datasets:
                write_dqm = True,
                dqm_sequences = [ "@common" ],
                physics_skims = [ "EXODisplacedJet", "LogError", "LogErrorMonitor" ],
+               siteWhitelist = [ "T0_CH_CSCS_HPC" ],
                scenario = ppScenario)
 
 datasets = [ "DoubleEG" ]
@@ -426,6 +429,7 @@ for dataset in datasets:
                alca_producers = [ "TkAlZMuMu", "MuAlCalIsolatedMu", "MuAlOverlaps", "MuAlZMuMu", "DtCalib" ],
                dqm_sequences = [ "@common", "@muon", "@lumi", "@L1TMuon" ],
                physics_skims = [ "LogError", "LogErrorMonitor" ],
+               siteWhitelist = [ "T0_CH_CSCS_HPC" ],
                scenario = ppScenario)
 
 datasets = [ "DoubleMuonLowPU" ]
@@ -450,6 +454,7 @@ for dataset in datasets:
                write_dqm = True,
                dqm_sequences = [ "@common" ],
                physics_skims = [ "LogError", "LogErrorMonitor", "BPHSkim" ],
+               siteWhitelist = [ "T0_CH_CSCS_HPC" ],
                scenario = ppScenario)
 
 datasets = [ "EmptyBX" ]
@@ -546,6 +551,7 @@ for dataset in datasets:
                physics_skims = [ "JetHTJetPlusHOFilter", "LogError", "LogErrorMonitor" ],
                timePerEvent = 5.7,
                sizePerEvent = 2250,
+               siteWhitelist = [ "T0_CH_CSCS_HPC" ],
                scenario = ppScenario)
 
 datasets = [ "MET" ]
@@ -557,6 +563,7 @@ for dataset in datasets:
                alca_producers = [ "HcalCalNoise" ],
                dqm_sequences = [ "@common", "@jetmet", "@hcal" ],
                physics_skims = [ "EXOMONOPOLE", "HighMET", "LogError", "LogErrorMonitor" ],
+               siteWhitelist = [ "T0_CH_CSCS_HPC" ],
                scenario = ppScenario)
 
 datasets = [ "MuOnia" ]
@@ -568,6 +575,7 @@ for dataset in datasets:
                alca_producers = [ "TkAlUpsilonMuMu" ],
                dqm_sequences = [ "@common", "@muon" ],
                physics_skims = [ "LogError", "LogErrorMonitor", "BPHSkim" ],
+               siteWhitelist = [ "T0_CH_CSCS_HPC" ],
                scenario = ppScenario)
 
 datasets = [ "MuonEG" ]
@@ -578,6 +586,7 @@ for dataset in datasets:
                write_dqm = True,
                dqm_sequences = [ "@common" ],
                physics_skims = [ "TopMuEG", "LogError", "LogErrorMonitor" ],
+               siteWhitelist = [ "T0_CH_CSCS_HPC" ],
                scenario = ppScenario)
 
 datasets = [ "NoBPTX" ]
@@ -590,6 +599,7 @@ for dataset in datasets:
                alca_producers = [ "TkAlCosmicsInCollisions" ],
                dqm_sequences = [ "@common" ],
                physics_skims = [ "EXONoBPTXSkim", "LogError", "LogErrorMonitor" ],
+               siteWhitelist = [ "T0_CH_CSCS_HPC" ],
                scenario = ppScenario)
 
 datasets = [ "SingleElectron" ]
@@ -612,6 +622,7 @@ for dataset in datasets:
                alca_producers = [ "TkAlMuonIsolated", "HcalCalIterativePhiSym", "DtCalib", "MuAlCalIsolatedMu", "MuAlOverlaps", "MuAlZMuMu", "HcalCalHO", "HcalCalHBHEMuonFilter" ],
                dqm_sequences = [ "@common", "@muon", "@lumi", "@L1TMuon" ],
                physics_skims = [ "MuonPOGSkim", "MuTau", "ZMu", "LogError", "LogErrorMonitor" ],
+               siteWhitelist = [ "T0_CH_CSCS_HPC" ],
                scenario = ppScenario)
 
 datasets = [ "SinglePhoton" ]
@@ -633,6 +644,7 @@ for dataset in datasets:
                alca_producers = [ "EcalUncalZElectron", "EcalUncalWElectron", "HcalCalIterativePhiSym", "HcalCalIsoTrkFilter", "EcalESAlign" ],
                dqm_sequences = [ "@common", "@ecal", "@egamma", "@L1TEgamma" ],
                physics_skims = [ "EXOMONOPOLE", "ZElectron", "LogError", "LogErrorMonitor" ],
+               siteWhitelist = [ "T0_CH_CSCS_HPC" ],
                scenario = ppScenario)
 
 datasets = [ "Tau" ]
@@ -643,6 +655,7 @@ for dataset in datasets:
                write_dqm = True,
                dqm_sequences = [ "@common" ],
                physics_skims = [ "LogError", "LogErrorMonitor" ],
+               siteWhitelist = [ "T0_CH_CSCS_HPC" ],
                scenario = ppScenario)
 
 #############################################
@@ -663,6 +676,7 @@ for dataset in datasets:
            physics_skims = [ "EcalActivity", "LogError", "LogErrorMonitor" ],
            timePerEvent = 12,
            sizePerEvent = 4000,
+           siteWhitelist = [ "T0_CH_CSCS_HPC" ],
            scenario = ppScenario)
 
 datasets = [ "HcalNZS" ]
@@ -676,6 +690,7 @@ for dataset in datasets:
            physics_skims = [ "LogError", "LogErrorMonitor" ],
            timePerEvent = 4.2,
            sizePerEvent = 1900,
+           siteWhitelist = [ "T0_CH_CSCS_HPC" ],
            scenario = hcalnzsScenario)
 
 datasets = [ "TestEnablesEcalHcal", "TestEnablesEcalHcalDQM" ]
@@ -685,6 +700,7 @@ for dataset in datasets:
                do_reco = True,
                alca_producers = [ "EcalTestPulsesRaw", "PromptCalibProdEcalPedestals" ],
                dqm_sequences = [ "@common" ],
+               siteWhitelist = [ "T0_CH_CSCS_HPC" ],
                scenario = alcaTestEnableScenario)
 
 datasets = [ "OnlineMonitor", "EcalLaser" ]
@@ -726,6 +742,7 @@ for dataset in datasets:
            dqm_sequences = [ "@common" ],
            timePerEvent = 0.02,
            sizePerEvent = 38,
+           siteWhitelist = [ "T0_CH_CSCS_HPC" ],
            scenario = alcaLumiPixelsScenario)
 
 datasets = [ "AlCaLumiPixels0", "AlCaLumiPixels1", "AlCaLumiPixels2", "AlCaLumiPixels3",
@@ -792,6 +809,7 @@ for dataset in datasets:
                dqm_sequences = [ "@common", "@ecal", "@jetmet", "@hcal", "@L1TEgamma" ],
                alca_producers = [ "TkAlMinBias" ],
                physics_skims = [ "LogError", "LogErrorMonitor" ],
+               siteWhitelist = [ "T0_CH_CSCS_HPC" ],
                scenario = ppScenario)
 
 datasets = [ "HLTPhysicsBunchTrains", "HLTPhysicsIsolatedBunch" ]
@@ -933,6 +951,7 @@ for dataset in datasets:
                dqm_sequences = [ "@commonSiStripZeroBias", "@ecal", "@hcal", "@muon", "@jetmet" ],
                alca_producers = [ "SiStripCalZeroBias", "TkAlMinBias", "LumiPixelsMinBias", "SiStripCalMinBias", "AlCaPCCZeroBiasFromRECO" ],
                physics_skims = [ "LogError", "LogErrorMonitor" ],
+               siteWhitelist = [ "T0_CH_CSCS_HPC" ],
                timePerEvent = 3.5,
                sizePerEvent = 1500,
                scenario = ppScenario)
