@@ -33,7 +33,7 @@ tier0Config = createTier0Config()
 setConfigVersion(tier0Config, "replace with real version")
 
 # Set run number to replay
-setInjectRuns(tier0Config, [ 322602 ])
+setInjectRuns(tier0Config, [ 322204 ])
 
 # Settings up sites
 processingSite = "T2_CH_CERN"
@@ -100,9 +100,9 @@ alcaTestEnableScenario = "AlCaTestEnable"
 alcaLumiPixelsScenario = "AlCaLumiPixels"
 
 # Defaults for processing version
-defaultProcVersion = 258
-expressProcVersion = 258
-alcarawProcVersion = 258
+defaultProcVersion = 265
+expressProcVersion = 265
+alcarawProcVersion = 265
 
 # Defaults for GlobalTag
 expressGlobalTag = "102X_dataRun2_Express_v2"
@@ -140,8 +140,11 @@ repackVersionOverride = {
     "CMSSW_10_1_7" : "CMSSW_10_2_5_patch1",
     "CMSSW_10_1_8" : "CMSSW_10_2_5_patch1",
     "CMSSW_10_1_9" : "CMSSW_10_2_5_patch1",
+    "CMSSW_10_1_10" : "CMSSW_10_2_5_patch1",
     "CMSSW_10_2_0" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_2_1" : "CMSSW_10_2_5_patch1"
+    "CMSSW_10_2_1" : "CMSSW_10_2_5_patch1",
+    "CMSSW_10_2_4" : "CMSSW_10_2_5_patch1"
+
     }
 
 expressVersionOverride = {
@@ -161,8 +164,10 @@ expressVersionOverride = {
     "CMSSW_10_1_7" : "CMSSW_10_2_5_patch1",
     "CMSSW_10_1_8" : "CMSSW_10_2_5_patch1",
     "CMSSW_10_1_9" : "CMSSW_10_2_5_patch1",
+    "CMSSW_10_1_10" : "CMSSW_10_2_5_patch1",
     "CMSSW_10_2_0" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_2_1" : "CMSSW_10_2_5_patch1"
+    "CMSSW_10_2_1" : "CMSSW_10_2_5_patch1",
+    "CMSSW_10_2_4" : "CMSSW_10_2_5_patch1"
     }
 
 #set default repack settings for bulk streams
@@ -196,6 +201,8 @@ addDataset(tier0Config, "Default",
 #           disk_node = "T1_US_FNAL_Disk",
 #           raw_to_disk = False,
            blockCloseDelay = 1200,
+           #This is only for CSCS tests.
+           siteWhitelist = [ "T0_CH_CSCS_HPC" ],
            timePerEvent = 5,
            sizePerEvent = 1500,
            scenario = ppScenario)
