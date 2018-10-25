@@ -33,7 +33,7 @@ tier0Config = createTier0Config()
 setConfigVersion(tier0Config, "replace with real version")
 
 # Set run number to replay
-setInjectRuns(tier0Config, [ 322602 ])
+setInjectRuns(tier0Config, [ 324841 ])
 
 # Settings up sites
 processingSite = "T2_CH_CERN"
@@ -83,7 +83,7 @@ setPromptCalibrationConfig(tier0Config,
 
 # Defaults for CMSSW version
 defaultCMSSWVersion = {
-       'default': "CMSSW_10_2_5_patch1"
+       'default': "CMSSW_10_2_6"
      }
 
 # Configure ScramArch
@@ -125,47 +125,49 @@ alcarawSplitting = 20000 * numberOfCores
 # Setup repack and express mappings
 #
 repackVersionOverride = {
-    "CMSSW_10_0_0" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_0_1" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_0_2" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_0_3" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_0_4" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_0_5" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_0" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_1" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_2" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_3" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_4" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_5" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_6" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_7" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_8" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_9" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_10" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_2_0" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_2_1" : "CMSSW_10_2_5_patch1"
+    "CMSSW_10_0_0" : "CMSSW_10_2_6",
+    "CMSSW_10_0_1" : "CMSSW_10_2_6",
+    "CMSSW_10_0_2" : "CMSSW_10_2_6",
+    "CMSSW_10_0_3" : "CMSSW_10_2_6",
+    "CMSSW_10_0_4" : "CMSSW_10_2_6",
+    "CMSSW_10_0_5" : "CMSSW_10_2_6",
+    "CMSSW_10_1_0" : "CMSSW_10_2_6",
+    "CMSSW_10_1_1" : "CMSSW_10_2_6",
+    "CMSSW_10_1_2" : "CMSSW_10_2_6",
+    "CMSSW_10_1_3" : "CMSSW_10_2_6",
+    "CMSSW_10_1_4" : "CMSSW_10_2_6",
+    "CMSSW_10_1_5" : "CMSSW_10_2_6",
+    "CMSSW_10_1_6" : "CMSSW_10_2_6",
+    "CMSSW_10_1_7" : "CMSSW_10_2_6",
+    "CMSSW_10_1_8" : "CMSSW_10_2_6",
+    "CMSSW_10_1_9" : "CMSSW_10_2_6",
+    "CMSSW_10_1_10" : "CMSSW_10_2_6",
+    "CMSSW_10_2_0" : "CMSSW_10_2_6",
+    "CMSSW_10_2_1" : "CMSSW_10_2_6",
+    "CMSSW_10_2_5" : "CMSSW_10_2_6"
     }
 
 expressVersionOverride = {
-    "CMSSW_10_0_0" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_0_1" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_0_2" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_0_3" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_0_4" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_0_5" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_0" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_1" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_2" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_3" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_4" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_5" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_6" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_7" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_8" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_9" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_1_10" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_2_0" : "CMSSW_10_2_5_patch1",
-    "CMSSW_10_2_1" : "CMSSW_10_2_5_patch1"
+    "CMSSW_10_0_0" : "CMSSW_10_2_6",
+    "CMSSW_10_0_1" : "CMSSW_10_2_6",
+    "CMSSW_10_0_2" : "CMSSW_10_2_6",
+    "CMSSW_10_0_3" : "CMSSW_10_2_6",
+    "CMSSW_10_0_4" : "CMSSW_10_2_6",
+    "CMSSW_10_0_5" : "CMSSW_10_2_6",
+    "CMSSW_10_1_0" : "CMSSW_10_2_6",
+    "CMSSW_10_1_1" : "CMSSW_10_2_6",
+    "CMSSW_10_1_2" : "CMSSW_10_2_6",
+    "CMSSW_10_1_3" : "CMSSW_10_2_6",
+    "CMSSW_10_1_4" : "CMSSW_10_2_6",
+    "CMSSW_10_1_5" : "CMSSW_10_2_6",
+    "CMSSW_10_1_6" : "CMSSW_10_2_6",
+    "CMSSW_10_1_7" : "CMSSW_10_2_6",
+    "CMSSW_10_1_8" : "CMSSW_10_2_6",
+    "CMSSW_10_1_9" : "CMSSW_10_2_6",
+    "CMSSW_10_1_10" : "CMSSW_10_2_6",
+    "CMSSW_10_2_0" : "CMSSW_10_2_6",
+    "CMSSW_10_2_1" : "CMSSW_10_2_6",
+    "CMSSW_10_2_5" : "CMSSW_10_2_6"
     }
 
 #set default repack settings for bulk streams
@@ -672,7 +674,8 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
                write_dqm = True,
-               alca_producers = [ "TkAlMuonIsolated", "HcalCalIterativePhiSym", "DtCalib", "MuAlCalIsolatedMu", "MuAlOverlaps", "MuAlZMuMu", "HcalCalHO", "HcalCalHBHEMuonFilter" ],
+               alca_producers = [ "TkAlMuonIsolated", "HcalCalIterativePhiSym", "DtCalib", "MuAlCalIsolatedMu",
+                                  "MuAlOverlaps", "MuAlZMuMu", "HcalCalHO", "HcalCalHBHEMuonFilter", "SiStripCalSmallBiasScan" ],
                dqm_sequences = [ "@common", "@muon", "@lumi", "@L1TMuon" ],
                physics_skims = [ "MuonPOGSkim", "MuTau", "ZMu", "LogError", "LogErrorMonitor" ],
                scenario = ppScenario)
@@ -693,7 +696,8 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
                write_dqm = True,
-               alca_producers = [ "EcalUncalZElectron", "EcalUncalWElectron", "HcalCalIterativePhiSym", "HcalCalIsoTrkFilter", "EcalESAlign" ],
+               alca_producers = [ "EcalUncalZElectron", "EcalUncalWElectron", "HcalCalIterativePhiSym",
+                                  "HcalCalIsoTrkFilter", "EcalESAlign", "SiStripCalSmallBiasScan" ],
                dqm_sequences = [ "@common", "@ecal", "@egamma", "@L1TEgamma" ],
                physics_skims = [ "EXOMONOPOLE", "ZElectron", "LogError", "LogErrorMonitor" ],
                scenario = ppScenario)
