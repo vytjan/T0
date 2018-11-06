@@ -35,7 +35,7 @@ tier0Config = createTier0Config()
 setConfigVersion(tier0Config, "replace with real version")
 
 # Set the min run number:
-setInjectMinRun(tier0Config, 325766)
+setInjectMinRun(tier0Config, 326294)
 
 # Set the max run number:
 setInjectMaxRun(tier0Config, 9999999)
@@ -51,7 +51,7 @@ streamerPNN = "T2_CH_CERN"
 #  Data type
 #  Processing site (where jobs run)
 #  PhEDEx locations
-setAcquisitionEra(tier0Config, "HIRun2018")
+setAcquisitionEra(tier0Config, "HIRun2018A")
 setBaseRequestPriority(tier0Config, 250000)
 setBackfill(tier0Config, None)
 setBulkDataType(tier0Config, "hidata")
@@ -114,19 +114,19 @@ defaultProcVersionRAW = 1
 
 alcarawProcVersion = {
        'acqEra': {'Commissioning2018': '1', 'Run2018A': '2', 'Run2018B': '2', 'Run2018C': '3', 
-                  'Run2018D': '2', 'Run2018E': '1'},
+                  'Run2018D': '2', 'Run2018E': '1', 'HIRun2018': '1'},
        'default': "1"
      }
 
 defaultProcVersionReco = {
        'acqEra': {'Commissioning2018': '1', 'Run2018A': '2', 'Run2018B': '2', 'Run2018C': '3', 
-                  'Run2018D': '2', 'Run2018E': '1'},
+                  'Run2018D': '2', 'Run2018E': '1', 'HIRun2018': '1'},
        'default': "1"
      }
 
 expressProcVersion = {
        'acqEra': {'Commissioning2018': '1', 'Run2018A': '1', 'Run2018B': '1', 'Run2018C': '1', 
-                  'Run2018D': '1', 'Run2018E': '1'},
+                  'Run2018D': '1', 'Run2018E': '1', 'HIRun2018': '1'},
        'default': "1"
      }
 
@@ -224,8 +224,9 @@ addDataset(tier0Config, "Default",
            global_tag = promptrecoGlobalTag,
            global_tag_connect = globalTagConnect,
            archival_node = "T0_CH_CERN_MSS",
-           tape_node = "T1_US_FNAL_MSS",
-           disk_node = "T1_US_FNAL_Disk",
+           tape_node = "T1_FR_CCIN2P3_MSS",
+           raw_tape_node = "T1_US_FNAL_MSS",
+           disk_node = "T2_US_Vanderbilt",
            raw_to_disk = False,
            blockCloseDelay = 24 * 3600,
            timePerEvent = 5,
@@ -330,9 +331,9 @@ addExpressConfig(tier0Config, "Calibration",
                  timePerEvent = 4,
                  sizePerEvent = 1700,
                  versionOverride = expressVersionOverride,
-                 archivalNode = "T0_CH_CERN_MSS",
-                 dataType = "data",
-                 tape_node = "T1_US_FNAL_MSS")
+                 # archivalNode = "T0_CH_CERN_MSS",
+                 # tape_node = "T1_US_FNAL_MSS",
+                 dataType = "hidata")
 
 addExpressConfig(tier0Config, "ExpressAlignment",
                  scenario = alcaTrackingOnlyScenario,
@@ -419,7 +420,7 @@ addExpressConfig(tier0Config, "HIExpressAlignment",
                  alca_producers = [ "TkAlMinBias", "PromptCalibProdBeamSpotHP" ],
                  dqm_sequences = [ "DQMOfflineTracking" ],
                  reco_version = defaultCMSSWVersion,
-                 raw_to_disk = True,
+                 # raw_to_disk = True,
                  multicore = numberOfCores,
                  global_tag_connect = globalTagConnect,
                  global_tag = expressGlobalTag,
@@ -470,8 +471,8 @@ for dataset in datasets:
                do_reco = True,
                write_dqm = True,
                dqm_sequences = [ "@common" ],
-               tape_node = "T1_UK_RAL_MSS",
-               disk_node = "T1_UK_RAL_Disk",
+               # tape_node = "T1_UK_RAL_MSS",
+               # disk_node = "T1_UK_RAL_Disk",
                physics_skims = [ "LogError", "LogErrorMonitor" ],
                scenario = ppScenario)
 
@@ -482,8 +483,8 @@ for dataset in datasets:
                do_reco = True,
                write_dqm = True,
                dqm_sequences = [ "@common" ],
-               tape_node = "T1_US_FNAL_MSS",
-               disk_node = "T1_US_FNAL_Disk",
+               # tape_node = "T1_US_FNAL_MSS",
+               # disk_node = "T1_US_FNAL_Disk",
                physics_skims = [ "LogError", "LogErrorMonitor" ],
                scenario = ppScenario)
 
@@ -493,11 +494,11 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
                write_reco = False,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                write_dqm = True,
                dqm_sequences = [ "@common" ],
-               tape_node = "T1_RU_JINR_MSS",
-               disk_node = "T1_RU_JINR_Disk",
+               # tape_node = "T1_RU_JINR_MSS",
+               # disk_node = "T1_RU_JINR_Disk",
                alca_producers = [ "TkAlJpsiMuMu" ],
                physics_skims = [ "BPHSkim", "MuonPOGJPsiSkim", "LogError", "LogErrorMonitor" ],
                scenario = ppScenario)
@@ -521,11 +522,11 @@ datasets = [ "DisplacedJet" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                write_dqm = True,
                dqm_sequences = [ "@common" ],
-               tape_node = "T1_FR_CCIN2P3_MSS",
-               disk_node = "T1_FR_CCIN2P3_Disk",
+               # tape_node = "T1_FR_CCIN2P3_MSS",
+               # disk_node = "T1_FR_CCIN2P3_Disk",
                physics_skims = [ "EXODisplacedJet", "LogError", "LogErrorMonitor" ],
                scenario = ppScenario)
 
@@ -536,8 +537,8 @@ for dataset in datasets:
                do_reco = True,
                write_reco = False,
                write_dqm = True,
-               tape_node = "T1_UK_RAL_MSS",
-               disk_node = "T1_UK_RAL_Disk",
+               # tape_node = "T1_UK_RAL_MSS",
+               # disk_node = "T1_UK_RAL_Disk",
                alca_producers = [ "EcalUncalZElectron", "EcalUncalWElectron", "HcalCalIterativePhiSym", "HcalCalIsoTrkFilter" ],
                dqm_sequences = [ "@common", "@ecal", "@egamma" ],
                physics_skims = [ "ZElectron", "LogError", "LogErrorMonitor" ],
@@ -549,10 +550,10 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
                write_reco = False,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                write_dqm = True,
-               tape_node = "T1_DE_KIT_MSS",
-               disk_node = "T1_DE_KIT_Disk",
+               # tape_node = "T1_DE_KIT_MSS",
+               # disk_node = "T1_DE_KIT_Disk",
                alca_producers = [ "TkAlZMuMu", "MuAlCalIsolatedMu", "MuAlOverlaps", "MuAlZMuMu", "DtCalib" ],
                dqm_sequences = [ "@common", "@muon", "@lumi", "@L1TMuon" ],
                physics_skims = [ "LogError", "LogErrorMonitor" ],
@@ -564,10 +565,10 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
                write_reco = False,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                write_dqm = True,
-               tape_node = "T1_DE_KIT_MSS",
-               disk_node = "T1_DE_KIT_Disk",
+               # tape_node = "T1_DE_KIT_MSS",
+               # disk_node = "T1_DE_KIT_Disk",
                alca_producers = [ "TkAlZMuMu", "MuAlCalIsolatedMu", "MuAlOverlaps", "MuAlZMuMu", "DtCalib" ],
                dqm_sequences = [ "@common", "@muon", "@lumi", "@L1TMuon" ],
                physics_skims = [ "LogError", "LogErrorMonitor" ],
@@ -581,8 +582,8 @@ for dataset in datasets:
                do_reco = True,
                write_dqm = True,
                dqm_sequences = [ "@common" ],
-               tape_node = "T1_US_FNAL_MSS",
-               disk_node = "T1_US_FNAL_Disk",
+               # tape_node = "T1_US_FNAL_MSS",
+               # disk_node = "T1_US_FNAL_Disk",
                physics_skims = [ "LogError", "LogErrorMonitor", "BPHSkim" ],
                scenario = ppScenario)
 
@@ -624,11 +625,11 @@ datasets = [ "HTMHT" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                write_dqm = True,
                dqm_sequences = [ "@common" ],
-               tape_node = "T1_UK_RAL_MSS",
-               disk_node = "T1_UK_RAL_Disk",
+               # tape_node = "T1_UK_RAL_MSS",
+               # disk_node = "T1_UK_RAL_Disk",
                physics_skims = [ "LogError", "LogErrorMonitor" ],
                timePerEvent = 9.4,
                sizePerEvent = 2000,
@@ -677,10 +678,10 @@ datasets = [ "JetHT" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                write_dqm = True,
-               tape_node = "T1_UK_RAL_MSS",
-               disk_node = "T1_UK_RAL_Disk",
+               # tape_node = "T1_UK_RAL_MSS",
+               # disk_node = "T1_UK_RAL_Disk",
                alca_producers = [ "HcalCalIsoTrkFilter", "HcalCalIsolatedBunchFilter" ],
                dqm_sequences = [ "@common", "@jetmet", "@hcal" ],
                physics_skims = [ "JetHTJetPlusHOFilter", "LogError", "LogErrorMonitor" ],
@@ -693,10 +694,10 @@ datasets = [ "MET" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                write_dqm = True,
-               tape_node = "T1_DE_KIT_MSS",
-               disk_node = "T1_DE_KIT_Disk",
+               # tape_node = "T1_DE_KIT_MSS",
+               # disk_node = "T1_DE_KIT_Disk",
                alca_producers = [ "HcalCalNoise" ],
                dqm_sequences = [ "@common", "@jetmet", "@hcal" ],
                physics_skims = [ "EXOMONOPOLE", "HighMET", "LogError", "LogErrorMonitor" ],
@@ -708,8 +709,8 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
                write_dqm = True,
-               tape_node = "T1_US_FNAL_MSS",
-               disk_node = "T1_US_FNAL_Disk",
+               # tape_node = "T1_US_FNAL_MSS",
+               # disk_node = "T1_US_FNAL_Disk",
                alca_producers = [ "TkAlUpsilonMuMu" ],
                dqm_sequences = [ "@common", "@muon" ],
                physics_skims = [ "LogError", "LogErrorMonitor", "BPHSkim" ],
@@ -722,8 +723,8 @@ for dataset in datasets:
                do_reco = True,
                write_dqm = True,
                dqm_sequences = [ "@common" ],
-               tape_node = "T1_FR_CCIN2P3_MSS",
-               disk_node = "T1_FR_CCIN2P3_Disk",
+               # tape_node = "T1_FR_CCIN2P3_MSS",
+               # disk_node = "T1_FR_CCIN2P3_Disk",
                physics_skims = [ "TopMuEG", "LogError", "LogErrorMonitor" ],
                scenario = ppScenario)
 
@@ -744,10 +745,10 @@ datasets = [ "SingleElectron" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                write_dqm = True,
-               tape_node = "T1_US_FNAL_MSS",
-               disk_node = "T1_US_FNAL_Disk",
+               # tape_node = "T1_US_FNAL_MSS",
+               # disk_node = "T1_US_FNAL_Disk",
                alca_producers = [ "EcalUncalWElectron", "EcalUncalZElectron", "HcalCalIterativePhiSym", "EcalESAlign" ],
                dqm_sequences = [ "@common", "@ecal", "@egamma", "@L1TEgamma" ],
                physics_skims = [ "LogError", "LogErrorMonitor" ],
@@ -758,10 +759,10 @@ datasets = [ "SingleMuon", "SingleMuonTnP" ] # SingleMuonTnP only for 2017 ppRef
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                write_dqm = True,
-               tape_node = "T1_US_FNAL_MSS", # "T1_IT_CNAF_MSS", CNAF is underwater
-               disk_node = "T1_US_FNAL_Disk", # "T1_IT_CNAF_Disk", CNAF is underwater
+               # tape_node = "T1_US_FNAL_MSS", # "T1_IT_CNAF_MSS", CNAF is underwater
+               # disk_node = "T1_US_FNAL_Disk", # "T1_IT_CNAF_Disk", CNAF is underwater
                alca_producers = [ "TkAlMuonIsolated", "HcalCalIterativePhiSym", "DtCalib", "MuAlCalIsolatedMu", "MuAlOverlaps", "MuAlZMuMu", "HcalCalHO", "HcalCalHBHEMuonFilter" ],
                dqm_sequences = [ "@common", "@muon", "@lumi", "@L1TMuon" ],
                physics_skims = [ "MuonPOGSkim", "MuTau", "ZMu", "LogError", "LogErrorMonitor" ],
@@ -772,10 +773,10 @@ datasets = [ "SinglePhoton" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                write_dqm = True,
-               tape_node = "T1_FR_CCIN2P3_MSS",
-               disk_node = "T1_FR_CCIN2P3_Disk",
+               # tape_node = "T1_FR_CCIN2P3_MSS",
+               # disk_node = "T1_FR_CCIN2P3_Disk",
                dqm_sequences = [ "@common", "@ecal", "@egamma" ],
                physics_skims = [ "EXOMONOPOLE", "LogError", "LogErrorMonitor" ],
                scenario = ppScenario)
@@ -785,10 +786,10 @@ datasets = [ "EGamma" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                write_dqm = True,
-               tape_node = "T1_IT_CNAF_MSS",
-               disk_node = "T1_IT_CNAF_Disk",
+               # tape_node = "T1_IT_CNAF_MSS",
+               # disk_node = "T1_IT_CNAF_Disk",
                alca_producers = [ "EcalUncalZElectron", "EcalUncalWElectron", "HcalCalIterativePhiSym", "HcalCalIsoTrkFilter", "EcalESAlign" ],
                dqm_sequences = [ "@common", "@ecal", "@egamma", "@L1TEgamma" ],
                physics_skims = [ "EXOMONOPOLE", "ZElectron", "LogError", "LogErrorMonitor" ],
@@ -799,11 +800,11 @@ datasets = [ "Tau" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                write_dqm = True,
                dqm_sequences = [ "@common" ],
-               tape_node = "T1_ES_PIC_MSS",
-               disk_node = "T1_ES_PIC_Disk",
+               # tape_node = "T1_ES_PIC_MSS",
+               # disk_node = "T1_ES_PIC_Disk",
                physics_skims = [ "LogError", "LogErrorMonitor" ],
                scenario = ppScenario)
 
@@ -819,7 +820,7 @@ datasets += [ "Commissioning1", "Commissioning2", "Commissioning3", "Commissioni
 for dataset in datasets:
     addDataset(tier0Config, dataset,
            do_reco = True,
-           raw_to_disk = True,
+           # raw_to_disk = True,
            write_dqm = True,
            alca_producers = [ "TkAlMinBias", "SiStripCalMinBias", "HcalCalIsoTrk", "HcalCalIsolatedBunchSelector" ],
            dqm_sequences = [ "@common", "@hcal" ],
@@ -846,7 +847,7 @@ datasets = [ "TestEnablesEcalHcal", "TestEnablesEcalHcalDQM" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                alca_producers = [ "EcalTestPulsesRaw", "PromptCalibProdEcalPedestals" ],
                dqm_sequences = [ "@common" ],
                scenario = alcaTestEnableScenario)
@@ -920,7 +921,7 @@ datasets = [ "AlCaPhiSym" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = False,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                alca_producers = [ "EcalCalPhiSym" ],
                scenario = ppScenario)
 
@@ -929,7 +930,7 @@ datasets = [ "AlCaP0" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = False,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                alca_producers = [ "EcalCalPi0Calib", "EcalCalEtaCalib" ],
                scenario = ppScenario)
 
@@ -942,7 +943,7 @@ datasets = [ "HLTPhysics" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                write_reco = False,
                write_dqm = True,
                dqm_sequences = [ "@common", "@ecal", "@jetmet", "@hcal", "@L1TEgamma" ],
@@ -958,7 +959,7 @@ datasets = [ "HLTPhysics0", "HLTPhysics1", "HLTPhysics2",
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                write_reco = False,
                write_dqm = True,
                dqm_sequences = [ "@common", "@ecal", "@jetmet", "@hcal", "@L1TEgamma" ],
@@ -971,7 +972,7 @@ datasets = [ "HLTPhysicsBunchTrains", "HLTPhysicsIsolatedBunch" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                write_dqm = True,
                alca_producers = [ "SiStripCalMinBias", "TkAlMinBias", "HcalCalIsoTrkFilter" ],
                physics_skims = [ "LogError", "LogErrorMonitor" ],
@@ -993,10 +994,10 @@ datasets = [ "EphemeralHLTPhysics1", "EphemeralHLTPhysics2", "EphemeralHLTPhysic
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                archival_node = None,
                tape_node = None,
-               disk_node = "T2_CH_CERN",
+               # disk_node = "T2_CH_CERN",
                scenario = ppScenario)
 
 datasets = [ "HLTPhysicsCosmics", "HLTPhysicsCosmics1", "HLTPhysicsCosmics2",
@@ -1020,8 +1021,8 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
                write_dqm = True,
-               tape_node = "T1_RU_JINR_MSS",
-               disk_node = "T1_RU_JINR_Disk",
+               # tape_node = "T1_RU_JINR_MSS",
+               # disk_node = "T1_RU_JINR_Disk",
                dqm_sequences = [ "@common", "@commonSiStripZeroBias", "@ecal", "@hcal", "@muon", "@jetmet" ],
                alca_producers = [ "SiStripCalZeroBias", "SiStripCalMinBias", "TkAlMinBias" ],
                scenario = ppScenario)
@@ -1038,8 +1039,8 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
                write_dqm = True,
-               tape_node = "T1_RU_JINR_MSS",
-               disk_node = "T1_RU_JINR_Disk",
+               # tape_node = "T1_RU_JINR_MSS",
+               # disk_node = "T1_RU_JINR_Disk",
                dqm_sequences = [ "@common", "@commonSiStripZeroBias", "@ecal", "@hcal", "@muon", "@jetmet" ],
                timePerEvent = 1,
                alca_producers = [ "SiStripCalZeroBias", "SiStripCalMinBias", "TkAlMinBias" ],
@@ -1109,7 +1110,7 @@ datasets += [ "ZeroBiasPD01", "ZeroBiasPD02", "ZeroBiasPD03",
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                write_reco = False,
                write_dqm = True,
                dqm_sequences = [ "@commonSiStripZeroBias", "@ecal", "@hcal", "@muon", "@jetmet" ],
@@ -1126,10 +1127,10 @@ datasets = [ "EphemeralZeroBias1", "EphemeralZeroBias2", "EphemeralZeroBias3",
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                archival_node = None,
                tape_node = None,
-               disk_node = "T2_CH_CERN",
+               # disk_node = "T2_CH_CERN",
                scenario = ppScenario)
 
 ########################################################
@@ -1143,7 +1144,7 @@ for dataset in datasets:
                do_reco = True,
                dqm_sequences = [ "@common" ],
                write_reco = False, write_aod = False, write_miniaod = True, write_dqm = True,
-               tape_node = "T1_US_FNAL_MSS",
+               # tape_node = "T1_US_FNAL_MSS",
                disk_node = None,
                scenario = ppScenario)
 
@@ -1152,10 +1153,10 @@ datasets = [ "ParkingScoutingMonitor" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                dqm_sequences = [ "@common" ],
                write_reco = False, write_aod = False, write_miniaod = True, write_dqm = True,
-               tape_node = "T1_US_FNAL_MSS",
+               # tape_node = "T1_US_FNAL_MSS",
                scenario = ppScenario)
 
 datasets = [ "ParkingMuon", "ParkingHT" ]
@@ -1195,7 +1196,7 @@ datasets = [ "RPCMonitor" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = False,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                scenario = ppScenario)
 
 datasets = [ "ScoutingMonitor" ]
@@ -1203,10 +1204,10 @@ datasets = [ "ScoutingMonitor" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                dqm_sequences = [ "@common" ],
                write_reco = False, write_aod = False, write_miniaod = True, write_dqm = True,
-               tape_node = "T1_US_FNAL_MSS",
+               # tape_node = "T1_US_FNAL_MSS",
                scenario = ppScenario)
 
 datasets = [ "ScoutingCaloCommissioning", "ScoutingCaloHT", "ScoutingCaloMuon",
@@ -1215,7 +1216,7 @@ datasets = [ "ScoutingCaloCommissioning", "ScoutingCaloHT", "ScoutingCaloMuon",
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = False,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                scenario = ppScenario)
 
 datasets = [ "ParkingHT410to430", "ParkingHT500to550", "ParkingHT430to450", "ParkingHT470to500", "ParkingHT450to470" ]
@@ -1223,7 +1224,7 @@ datasets = [ "ParkingHT410to430", "ParkingHT500to550", "ParkingHT430to450", "Par
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = False,
-               tape_node = "T1_RU_JINR_MSS",
+               # tape_node = "T1_RU_JINR_MSS",
                disk_node = None,
                scenario = ppScenario)
 
@@ -1232,7 +1233,7 @@ datasets = [ "ParkingHT550to650", "ParkingHT650" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = False,
-               tape_node = "T1_US_FNAL_MSS",
+               # tape_node = "T1_US_FNAL_MSS",
                disk_node = None,
                scenario = ppScenario)
 
@@ -1260,7 +1261,7 @@ datasets += [ "AlCaElectron", "VRRandom", "VRRandom0", "VRRandom1", "VRRandom2",
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = False,
-               raw_to_disk = True,
+               # raw_to_disk = True,
                scenario = ppScenario)
 
 
@@ -1647,7 +1648,6 @@ datasets = [ "HITestFull", "HITestReduced" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
-               raw_to_disk = True,
                write_dqm = True,
                dqm_sequences = [ "@common" ],
                scenario = hiTestppScenario)
@@ -1659,7 +1659,6 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                write_miniaod = False,
                do_reco = True,
-               raw_to_disk = True,
                write_dqm = True,
                dqm_sequences = [ "@common" ],
                scenario = hiTestppScenario)
@@ -1670,7 +1669,6 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                write_miniaod = False,
                do_reco = True,
-               raw_to_disk = True,
                write_dqm = True,
                dqm_sequences = [ "@common" ],
                scenario = hiTestppScenario)
@@ -1684,7 +1682,6 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                write_miniaod = False,
                do_reco = True,
-               raw_to_disk = True,
                write_dqm = False,
                scenario = hiTestppScenario)
 
@@ -1694,7 +1691,6 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                write_miniaod = False,
                do_reco = True,
-               raw_to_disk = True,
                write_dqm = True,
                dqm_sequences = [ "@commonSiStripZeroBias" ],
                scenario = hiTestppScenario)
@@ -1708,7 +1704,6 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                write_miniaod = False,
                do_reco = True,
-               raw_to_disk = True,
                write_dqm = True,
                dqm_sequences = [ "@commonSiStripZeroBias", "@hcal" ],
                scenario = hiTestppScenario)
@@ -1719,7 +1714,6 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                write_miniaod = False,
                do_reco = True,
-               raw_to_disk = True,
                write_dqm = True,
                alca_producers = [ "HcalCalMinBias" ],
                dqm_sequences = [ "@common", "@hcal" ],
@@ -1731,7 +1725,6 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                write_miniaod = False,
                do_reco = True,
-               raw_to_disk = True,
                write_dqm = True,
                alca_producers = [ "TkAlMinBias" ],
                dqm_sequences = [ "@common" ],
@@ -1743,7 +1736,6 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                write_miniaod = False,
                do_reco = True,
-               raw_to_disk = True,
                write_dqm = True,
                dqm_sequences = [ "@common", "@ecal", "@egamma" ],
                scenario = hiTestppScenario)
@@ -1754,7 +1746,6 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                write_miniaod = False,
                do_reco = True,
-               raw_to_disk = True,
                write_dqm = True,
                alca_producers = [ "TkAlMinBias", "HcalCalIterativePhiSym", "SiStripCalSmallBiasScan" ],
                dqm_sequences = [ "@common", "@ecal", "@hcal", "@jetmet", "@egamma" ],
@@ -1767,7 +1758,6 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
                write_dqm = True,
-               raw_to_disk = True,
                write_miniaod = False,
                alca_producers = [ "TkAlZMuMu", "TkAlMuonIsolated", "DtCalib", "HcalCalIterativePhiSym" ],
                dqm_sequences = [ "@common", "@muon", "@lumi" ],
@@ -1779,7 +1769,6 @@ for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = True,
                write_reco = False,
-               raw_to_disk = True,
                write_miniaod = False,
                write_dqm = True,
                alca_producers = [ "TkAlJpsiMuMu", "TkAlUpsilonMuMu" ],
@@ -1792,7 +1781,6 @@ datasets = [ "HIOnlineMonitor", "HITrackerNZS" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = False,
-               raw_to_disk = True,
                scenario = hiTestppScenario)
 
 #######################

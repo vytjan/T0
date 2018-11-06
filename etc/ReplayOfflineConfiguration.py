@@ -83,7 +83,7 @@ setPromptCalibrationConfig(tier0Config,
 
 # Defaults for CMSSW version
 defaultCMSSWVersion = {
-       'default': "CMSSW_10_3_1"
+       'default': "CMSSW_10_3_1_patch1"
      }
 
 # Configure ScramArch
@@ -102,9 +102,9 @@ alcaLumiPixelsScenario = "AlCaLumiPixels"
 hiTestppScenario = "ppEra_Run2_2018_pp_on_AA"
 
 # Defaults for processing version
-defaultProcVersion = 218
-expressProcVersion = 218
-alcarawProcVersion = 218
+defaultProcVersion = 220
+expressProcVersion = 220
+alcarawProcVersion = 220
 
 # Defaults for GlobalTag
 expressGlobalTag = "103X_dataRun2_Express_v2"
@@ -126,51 +126,51 @@ alcarawSplitting = 20000 * numberOfCores
 # Setup repack and express mappings
 #
 repackVersionOverride = {
-    "CMSSW_10_0_0" : "CMSSW_10_3_1",
-    "CMSSW_10_0_1" : "CMSSW_10_3_1",
-    "CMSSW_10_0_2" : "CMSSW_10_3_1",
-    "CMSSW_10_0_3" : "CMSSW_10_3_1",
-    "CMSSW_10_0_4" : "CMSSW_10_3_1",
-    "CMSSW_10_0_5" : "CMSSW_10_3_1",
-    "CMSSW_10_1_0" : "CMSSW_10_3_1",
-    "CMSSW_10_1_1" : "CMSSW_10_3_1",
-    "CMSSW_10_1_2" : "CMSSW_10_3_1",
-    "CMSSW_10_1_3" : "CMSSW_10_3_1",
-    "CMSSW_10_1_4" : "CMSSW_10_3_1",
-    "CMSSW_10_1_5" : "CMSSW_10_3_1",
-    "CMSSW_10_1_6" : "CMSSW_10_3_1",
-    "CMSSW_10_1_7" : "CMSSW_10_3_1",
-    "CMSSW_10_1_8" : "CMSSW_10_3_1",
-    "CMSSW_10_1_9" : "CMSSW_10_3_1",
-    "CMSSW_10_1_10" : "CMSSW_10_3_1",
-    "CMSSW_10_2_0" : "CMSSW_10_3_1",
-    "CMSSW_10_2_1" : "CMSSW_10_3_1",
-    "CMSSW_10_2_5" : "CMSSW_10_3_1",
-    "CMSSW_10_3_0" : "CMSSW_10_3_1"
+    "CMSSW_10_0_0" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_0_1" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_0_2" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_0_3" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_0_4" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_0_5" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_0" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_1" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_2" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_3" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_4" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_5" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_6" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_7" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_8" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_9" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_10" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_2_0" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_2_1" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_2_5" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_3_0" : "CMSSW_10_3_1_patch1"
     }
 
 expressVersionOverride = {
-    "CMSSW_10_0_0" : "CMSSW_10_3_1",
-    "CMSSW_10_0_1" : "CMSSW_10_3_1",
-    "CMSSW_10_0_2" : "CMSSW_10_3_1",
-    "CMSSW_10_0_3" : "CMSSW_10_3_1",
-    "CMSSW_10_0_4" : "CMSSW_10_3_1",
-    "CMSSW_10_0_5" : "CMSSW_10_3_1",
-    "CMSSW_10_1_0" : "CMSSW_10_3_1",
-    "CMSSW_10_1_1" : "CMSSW_10_3_1",
-    "CMSSW_10_1_2" : "CMSSW_10_3_1",
-    "CMSSW_10_1_3" : "CMSSW_10_3_1",
-    "CMSSW_10_1_4" : "CMSSW_10_3_1",
-    "CMSSW_10_1_5" : "CMSSW_10_3_1",
-    "CMSSW_10_1_6" : "CMSSW_10_3_1",
-    "CMSSW_10_1_7" : "CMSSW_10_3_1",
-    "CMSSW_10_1_8" : "CMSSW_10_3_1",
-    "CMSSW_10_1_9" : "CMSSW_10_3_1",
-    "CMSSW_10_1_10" : "CMSSW_10_3_1",
-    "CMSSW_10_2_0" : "CMSSW_10_3_1",
-    "CMSSW_10_2_1" : "CMSSW_10_3_1",
-    "CMSSW_10_2_5" : "CMSSW_10_3_1",
-    "CMSSW_10_3_0" : "CMSSW_10_3_1"
+    "CMSSW_10_0_0" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_0_1" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_0_2" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_0_3" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_0_4" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_0_5" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_0" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_1" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_2" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_3" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_4" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_5" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_6" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_7" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_8" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_9" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_1_10" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_2_0" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_2_1" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_2_5" : "CMSSW_10_3_1_patch1",
+    "CMSSW_10_3_0" : "CMSSW_10_3_1_patch1"
     }
 
 #set default repack settings for bulk streams
