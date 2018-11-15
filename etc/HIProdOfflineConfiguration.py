@@ -857,7 +857,7 @@ datasets = [ "OnlineMonitor", "EcalLaser" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = False,
-               raw_to_disk = False,
+               # raw_to_disk = False,
                scenario = ppScenario)
 
 datasets = [ "CosmicsForEventDisplay" ]
@@ -865,7 +865,7 @@ datasets = [ "CosmicsForEventDisplay" ]
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                do_reco = False,
-               raw_to_disk = False,
+               # raw_to_disk = False,
                write_miniaod = False,
                scenario = cosmicsScenario)
 
@@ -1653,13 +1653,24 @@ for dataset in datasets:
                scenario = hiTestppScenario)
 
 datasets = [ "HIHardProbesPrescaled", "HIHardProbesPeripheral", "HICommissioning",
-             "HICastor", "HIHeavyFlavor", "HIHighMultiplicityETTAsym" ]
+             "HICastor" ]
 
 for dataset in datasets:
     addDataset(tier0Config, dataset,
                write_miniaod = False,
                do_reco = True,
                write_dqm = True,
+               dqm_sequences = [ "@common" ],
+               scenario = hiTestppScenario)
+
+datasets = [ "HIHeavyFlavor", "HIHighMultiplicityETTAsym" ]
+
+for dataset in datasets:
+    addDataset(tier0Config, dataset,
+               write_miniaod = False,
+               do_reco = True,
+               write_dqm = True,
+               reco_split = hiRecoSplitting,
                dqm_sequences = [ "@common" ],
                scenario = hiTestppScenario)
 
@@ -1710,7 +1721,7 @@ for dataset in datasets:
                dqm_sequences = [ "@commonSiStripZeroBias" ],
                scenario = hiTestppScenario)
 
-datasets = [ "HIMinimumBias0", "HIMinimumBias1" ] 
+datasets = [ "HIMinimumBias0", "HIMinimumBias1" ]
 
 for dataset in datasets:
     addDataset(tier0Config, dataset,
@@ -1766,6 +1777,7 @@ for dataset in datasets:
                write_miniaod = False,
                do_reco = True,
                write_dqm = True,
+               reco_split = hiRecoSplitting,
                dqm_sequences = [ "@common", "@ecal", "@egamma" ],
                scenario = hiTestppScenario)
 
@@ -1776,6 +1788,7 @@ for dataset in datasets:
                write_miniaod = False,
                do_reco = True,
                write_dqm = True,
+               reco_split = hiRecoSplitting,
                alca_producers = [ "TkAlMinBias", "HcalCalIterativePhiSym", "SiStripCalSmallBiasScan" ],
                dqm_sequences = [ "@common", "@ecal", "@hcal", "@jetmet", "@egamma" ],
                physics_skims = [ "PbPbEMu", "PbPbZEE" ],
@@ -1788,6 +1801,7 @@ for dataset in datasets:
                do_reco = True,
                write_dqm = True,
                write_miniaod = False,
+               reco_split = hiRecoSplitting,
                alca_producers = [ "TkAlZMuMu", "TkAlMuonIsolated", "DtCalib", "HcalCalIterativePhiSym" ],
                dqm_sequences = [ "@common", "@muon", "@lumi" ],
                scenario = hiTestppScenario)
@@ -1800,6 +1814,7 @@ for dataset in datasets:
                write_reco = False,
                write_miniaod = False,
                write_dqm = True,
+               reco_split = hiRecoSplitting,
                alca_producers = [ "TkAlJpsiMuMu", "TkAlUpsilonMuMu" ],
                dqm_sequences = [ "@common", "@muon", "@lumi" ],
                physics_skims = [ "PbPbZMM" ],
