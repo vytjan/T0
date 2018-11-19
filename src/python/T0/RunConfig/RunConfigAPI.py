@@ -555,7 +555,7 @@ def configureRunStream(tier0Config, run, stream, specDirectory, dqmUploadProxy):
 
             specArguments = {}
 
-            if stream == 'ScoutingPF':
+            if stream == 'ScoutingPF' or stream == 'NanoDST' or stream == 'ALCAPHISYM':
                 specArguments['Memory'] = 2000
             else:
                 specArguments['Memory'] = 1000
@@ -612,7 +612,7 @@ def configureRunStream(tier0Config, run, stream, specDirectory, dqmUploadProxy):
                 perCoreMemory = 1300
             else:
                 baseMemory = 3500
-                perCoreMemory = 1050
+                perCoreMemory = 1560
 
             specArguments['Memory'] = baseMemory + perCoreMemory
 
@@ -1032,7 +1032,7 @@ def releasePromptReco(tier0Config, specDirectory, dqmUploadProxy):
                     perCoreMemory = 1300
                 else:
                     baseMemory = 3500
-                    perCoreMemory = 1050
+                    perCoreMemory = 1560
 
                 specArguments['Memory'] = baseMemory + perCoreMemory
 
