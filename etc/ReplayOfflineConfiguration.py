@@ -101,9 +101,9 @@ alcaLumiPixelsScenario = "AlCaLumiPixels"
 hiTestppScenario = "ppEra_Run2_2018_pp_on_AA"
 
 # Defaults for processing version
-defaultProcVersion = 2
-expressProcVersion = 2
-alcarawProcVersion = 2
+defaultProcVersion = 3
+expressProcVersion = 3
+alcarawProcVersion = 3
 
 # Defaults for GlobalTag
 expressGlobalTag = "102X_dataRun2_Express_v4"
