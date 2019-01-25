@@ -38,7 +38,7 @@ def addJiraComment(text){
 // }
 
 // job('upstreamJob') {
-checkout scm
+// checkout scm
 // }
 
 node('t0ReplayNode') {
