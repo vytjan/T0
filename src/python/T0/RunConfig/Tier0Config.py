@@ -257,6 +257,8 @@ def createTier0Config():
 
     tier0Config.Global.BaseRequestPriority = 150000
 
+    tier0Config.Global.EnableUniqueWorkflowName = False
+
     return tier0Config
 
 def retrieveStreamConfig(config, streamName):
@@ -661,6 +663,15 @@ def setInjectMaxRun(config, injectMaxRun):
     Set the highest run to be injected into the Tier0.
     """
     config.Global.InjectMaxRun = injectMaxRun
+    return
+
+def setEnableUniqueWorkflowName(config):
+    """
+    _setEnableUniqueWorkflowName_
+
+    Enables using unique workflow names in Tier0 replays.
+    """
+    config.Global.EnableUniqueWorkflowName = True
     return
 
 def ignoreStream(config, streamName):
