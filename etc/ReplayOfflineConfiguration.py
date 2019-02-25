@@ -47,7 +47,7 @@ streamerPNN = "T2_CH_CERN"
 #  Data type
 #  Processing site (where jobs run)
 #  PhEDEx locations
-setAcquisitionEra(tier0Config, "Tier0_REPLAY_vocms047")
+setAcquisitionEra(tier0Config, "Tier0_REPLAY_vocms0500")
 setBaseRequestPriority(tier0Config, 251000)
 setBackfill(tier0Config, 1)
 setBulkDataType(tier0Config, "data")
@@ -107,9 +107,9 @@ alcaLumiPixelsScenario = "AlCaLumiPixels"
 hiTestppScenario = "ppEra_Run2_2018_pp_on_AA"
 
 # Defaults for processing version
-defaultProcVersion = 274
-expressProcVersion = 274
-alcarawProcVersion = 274
+defaultProcVersion = 1
+expressProcVersion = 1
+alcarawProcVersion = 1
 
 # Defaults for GlobalTag
 expressGlobalTag = "102X_dataRun2_Express_v4"
