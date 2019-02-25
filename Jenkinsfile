@@ -1,8 +1,5 @@
 import groovy.json.JsonOutput
 
-// Do not resolve JIRA email by the user name:
-// hudson.plugins.jira.JiraMailAddressResolver.disabled=true
-
 // A new JIRA issue template
 def newJiraIssue(summary, description){
     def testIssue = [fields: [ project: [key: 'CMSTZDEV'],
@@ -48,19 +45,27 @@ node('t0ReplayNode') {
             echo 'Cleaning up the agent before the replay'
         }
     }
+    stage('UpdateConfigurations') {
+        sh '''
+            HOME_DIR=/data/tier0
+            gitdir=$(pwd)
+            cd /data/tier0/
+            #copy the necessary scripts and configs:
+            cp ${gitdir}/etc/ReplayOfflineConfiguration.py ${HOME_DIR}/admin/ReplayOfflineConfiguration.py
+            cp ${gitdir}/bin/message.py ${HOME_DIR}/jenkins/message.py
+            cp ${gitdir}/bin/compile.py ${HOME_DIR}/jenkins/compile.py
+            cp ${gitdir}/bin/replayWorkflowStatus.py ${HOME_DIR}/jenkins/replayWorkflowStatus.py
+            cp ${gitdir}/bin/00_software.sh ${HOME_DIR}/00_software.sh
+            cp ${gitdir}/bin/00_deploy_replay.sh ${HOME_DIR}/00_deploy_replay.sh
+        '''
+    }
     // Deploy a new T0 WMAgent
     stage('DeployTheAgent') {
         sh '''
-            gitdir=$(pwd)
             cd /data/tier0/
             ./00_software.sh
-            ##deploy them
+            #deploy them
             ./00_deploy_replay.sh
-            #copy the necessary scripts and configs:
-            cp ${gitdir}/etc/ReplayOfflineConfiguration.py /data/tier0/admin/ReplayOfflineConfiguration.py
-            cp ${gitdir}/bin/message.py /data/tier0/jenkins/message.py
-            cp ${gitdir}/bin/compile.py /data/tier0/jenkins/compile.py
-            cp ${gitdir}/bin/replayWorkflowStatus.py /data/tier0/jenkins/replayWorkflowStatus.py
         '''
         script{
             SHELL_OUTPUT = sh(returnStdout: true, script: 'python /data/tier0/jenkins/message.py /data/tier0/jenkins/compile.py /data/tier0/admin/ReplayOfflineConfiguration.py')
@@ -96,13 +101,10 @@ node('t0ReplayNode') {
                         // echo SHELL_OUTPUT
                         echo status.toString()
                         if  (status == 0) {
-                            // echo "status zero"
                             addJiraComment("*There were NO paused jobs in the replay.*")
                         } else if (status == 1) {
-                            // echo "status one"
                             addJiraComment("*There are some paused jobs in the replay.*")
                         } else {
-                            // echo "status other"
                             addJiraComment("*There were some issues as the paused job checker script failed with exit code ${status}*")
                         }
                     }
@@ -114,10 +116,8 @@ node('t0ReplayNode') {
                         def replayStatus = sh(returnStatus: true, script: 'python /data/tier0/jenkins/replayWorkflowStatus.py Repack')
                         echo SHELL_OUTPUT
                         if  (replayStatus == 0) {
-                            // echo "status zero"
                             addJiraComment('All Repack workflows were processed.')
                         } else {
-                            // echo "status non zero"
                             addJiraComment("*Something went wrong with checking existing Replay workflows. Please check the replay manually*")
                         }
                     }
@@ -130,10 +130,8 @@ node('t0ReplayNode') {
                         def expressStatus = sh(returnStatus: true, script: 'python /data/tier0/jenkins/replayWorkflowStatus.py Express')
                         echo SHELL_OUTPUT
                         if  (expressStatus == 0) {
-                            // echo expressStatus.toString()
                             addJiraComment('All Express workflows were processed')
                         } else {
-                            // echo expressStatus.toString()
                             addJiraComment("*Something went wrong with checking existing Express workflows. Please check the replay manually*")
                         }   
                     }
@@ -146,10 +144,8 @@ node('t0ReplayNode') {
                         def filesetStatus = sh(returnStatus: true, script: 'python /data/tier0/jenkins/replayWorkflowStatus.py Fileset')
                         echo SHELL_OUTPUT
                         if  (filesetStatus == 0) {
-                            // echo filesetStatus.toString()
                             addJiraComment('All filesets were closed')
                         } else {
-                            // echo filesetStatus.toString()
                             addJiraComment("*Something went wrong with checking existing filesets. Please check the replay manually*")
                         }
                     }
