@@ -35,7 +35,11 @@ tier0Config = createTier0Config()
 setConfigVersion(tier0Config, "replace with real version")
 
 # Set run number to replay
+<<<<<<< HEAD
 setInjectRuns(tier0Config, [ 312851 ])
+=======
+setInjectRuns(tier0Config, [ 328788 ])
+>>>>>>> 34004aa... Init jenkins config.
 
 # Settings up sites
 processingSite = "T2_CH_CERN"
@@ -257,7 +261,7 @@ addExpressConfig(tier0Config, "ExpressCosmics",
                  write_dqm = True,
                  alca_producers = [ "SiStripPCLHistos", "SiStripCalZeroBias", "TkAlCosmics0T",
                                     "DtCalibCosmics", "SiPixelCalZeroBias",
-                                    "PromptCalibProdSiStrip", "PromptCalibProdSiPixel"
+                                    "PromptCalibProdSiStrip", "PromptCalibProdSiPixel", "SomeRandomAlca"
                                     ],
                  reco_version = defaultCMSSWVersion,
                  multicore = numberOfCores,
