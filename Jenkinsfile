@@ -2,7 +2,7 @@ import groovy.json.JsonOutput
 
 // A new JIRA issue template
 def newJiraIssue(summary, description){
-    def testIssue = [fields: [ project: [key: 'CMSTZDEV'],
+    def testIssue = [fields: [ project: [key: 'CMSTZ'],
                        summary: summary,
                        description: description,
                        issuetype: [name: 'Task']]]  
